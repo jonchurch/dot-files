@@ -33,7 +33,7 @@ set rtp+=$HOME/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
 " Setup Pathogen
- "execute pathogen#infect()
+ execute pathogen#infect()
 
 " Vundle let's you specify a plugin in a number of formats, but my favorite
 " allows you to grab plugins straight off of github, just specify the bundle
@@ -88,7 +88,33 @@ Bundle 'kchmck/vim-coffee-script'
 Plugin 'dracula/vim'
 
 " Base16 Vim colorschemes
-" Plugin 'chriskempson/base16-vim'
+ Plugin 'chriskempson/base16-vim'
+
+" vim-fugitive use git from vim
+ Plugin 'tpope/vim-fugitive'
+ " fugitive git bindings
+  nnoremap <space>ga :Git add %:p<CR><CR>
+  nnoremap <space>gs :Gstatus<CR>
+  nnoremap <space>gc :Gcommit -v -q<CR>
+ " nnoremap <space>gt :Gcommit -v -q %:p<CR>
+  nnoremap <space>gd :Gdiff<CR>
+ " nnoremap <space>ge :Gedit<CR>
+ " nnoremap <space>gr :Gread<CR>
+ " nnoremap <space>gw :Gwrite<CR><CR>
+ " nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
+ " nnoremap <space>gp :Ggrep<Space>
+ " nnoremap <space>gm :Gmove<Space>
+ " nnoremap <space>gb :Git branch<Space>
+ " nnoremap <space>go :Git checkout<Space>
+  nnoremap <space>gps :Dispatch! git push<CR>
+ " nnoremap <space>gpl :Dispatch! git pull<CR>
+
+" autoclose brackets
+ Plugin 'Townk/vim-autoclose'
+
+" js-beautify
+"Plugin 'maksimr/vim-jsbeautify'
+map <c-f> :call JsBeautify()<cr>
 
 " <Ctrl-l> redraws the screen and removes any search highlighting.
  nnoremap <silent> <C-/> :nohl<CR><C-l>
@@ -184,6 +210,7 @@ let g:ctrlp_max_height = 30
 " link above (back up where we included the bundle of a ton of themes.)
 
 "   colorscheme dracula
+
 
 " Disable Arrow keys in Escape mode
  map <up> <nop>
