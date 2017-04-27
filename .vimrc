@@ -33,7 +33,7 @@ set rtp+=$HOME/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
 " Setup Pathogen
- execute pathogen#infect()
+" execute pathogen#infect()
 
 " Vundle let's you specify a plugin in a number of formats, but my favorite
 " allows you to grab plugins straight off of github, just specify the bundle
