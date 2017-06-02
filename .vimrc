@@ -68,6 +68,9 @@ Bundle 'pangloss/vim-javascript'
 " vim indents HTML very poorly on it's own. This fixes a lot of that.
 Bundle 'indenthtml.vim'
 
+" jsx highlighting 
+Plugin 'mxw/vim-jsx'
+
 " I write markdown a lot. This is a good syntax.
 Bundle 'tpope/vim-markdown'
 
@@ -205,6 +208,8 @@ let g:ctrlp_map = '<c-t>'
 " Let ctrlp have up to 30 results.
 let g:ctrlp_max_height = 30
 
+" custom ctrlp ignore
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 " Finally the color scheme. Choose whichever you want from the list in the
 " link above (back up where we included the bundle of a ton of themes.)
