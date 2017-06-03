@@ -113,7 +113,12 @@ Plugin 'dracula/vim'
  " nnoremap <space>gpl :Dispatch! git pull<CR>
 
 " autoclose brackets
- Plugin 'Townk/vim-autoclose'
+" Plugin 'Townk/vim-autoclose'
+
+" Autoclose brackets and newline carriage return
+Plugin 'delimitMate.vim'
+let g:delimitMate_expand_cr=1
+let g:delimitMate_matchpairs = "(:),[:],{:},<:>"
 
 " js-beautify
 "Plugin 'maksimr/vim-jsbeautify'
