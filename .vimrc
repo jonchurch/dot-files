@@ -68,6 +68,10 @@ Bundle 'pangloss/vim-javascript'
 " vim indents HTML very poorly on it's own. This fixes a lot of that.
 Bundle 'indenthtml.vim'
 
+" Emmet Vim
+Plugin 'mattn/emmet-vim'
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+
 " jsx highlighting 
 Plugin 'mxw/vim-jsx'
 
