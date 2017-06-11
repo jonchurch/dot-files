@@ -70,7 +70,15 @@ Bundle 'indenthtml.vim'
 
 " Emmet Vim
 Plugin 'mattn/emmet-vim'
+" Autoexpand emmet with tab
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+" jsx emmet in js files
+let g:user_emmet_settings = {
+            \  'javascript' : {
+            \      'extends' : 'jsx',
+            \  },
+            \}
+
 
 " jsx highlighting 
 Plugin 'mxw/vim-jsx'
@@ -122,7 +130,7 @@ Plugin 'dracula/vim'
 " Autoclose brackets and newline carriage return
 Plugin 'delimitMate.vim'
 let g:delimitMate_expand_cr=1
-let g:delimitMate_matchpairs = "(:),[:],{:},<:>"
+let g:delimitMate_matchpairs = "(:),[:],{:},<:>,>:<"
 
 " js-beautify
 "Plugin 'maksimr/vim-jsbeautify'
