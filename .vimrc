@@ -1,75 +1,99 @@
 " Beginners .vimrc
 " v0.1 2012-10-22 Philip Thrasher
-"
-" Important things for beginners:
-" * Start out small... Don't jam your vimrc full of things you're not ready to
-"   immediately use.
-" * Read other people's vimrc's.
-" * Use a plugin manager for christ's sake! (I highly recommend vundle)
-" * Spend time configuring your editor... It's important. Its the tool you
-"   spend 8 hours a day crafting your reputation.
-" * remap stupid things to new keys that make you more efficient.
-" * Don't listen to the haters that complain about using non-default
-"   key-bindings. Their argument is weak. I spend most of my time in the editor
-"   on my computer, not others, so I don't care if customizing vim means I'll
-"   have a harder time using remote vim.
-"
-" Below I've left some suggestions of good default settings to have in a bare
-" minimal vimrc. You only what you want to use, and nothing more. I've heavily
-" commented each, and these are what I consider bare necessities, my workflow
-" absolutely depends on these things.
-"
-" If you have any questions, email me at pthrash@me.com
 
-" Setup Vundle:
-" For this to work, you must install the vundle plugin manually.
-" https://github.com/gmarik/vundle
-" To install vundle, copy all the files from the repo into your respective
-" folders within ~/.vim
-set nocompatible " Fuck VI... That's for grandpas.
-filetype off
+" Setting up Vundle - the vim plugin bundler
+    let iCanHazVundle=1
+    let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+    if !filereadable(vundle_readme) 
+        echo "Installing Vundle.."
+        echo ""
+        silent !mkdir -p ~/.vim/bundle
+        silent !git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/vundle
+        let iCanHazVundle=0
+    endif
+    set nocompatible              " be iMproved, required
+    filetype off                  " required
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#begin()
+	" Let vundle manage itself:
+    Plugin 'VundleVim/Vundle.vim'
+    
+	" Just a shitload of color schemes.
+	" https://github.com/flazz/vim-colorschemes#current-colorschemes
+	Bundle 'flazz/vim-colorschemes'
 
-set rtp+=$HOME/.vim/bundle/Vundle.vim/
-call vundle#rc()
+	" Fuzzy finder -- absolutely must have.
+	Bundle 'kien/ctrlp.vim'
 
-" Setup Pathogen
-" execute pathogen#infect()
+	" Support for easily toggling comments.
+	Bundle 'tpope/vim-commentary'
 
-" Vundle let's you specify a plugin in a number of formats, but my favorite
-" allows you to grab plugins straight off of github, just specify the bundle
-" in the following format:
-" Bundle 'githubUsername/repoName'
+	" In addtion to the above plugins, you'll likely need some for individual
+	" non-standard syntaxes that aren't pre-bundled with vim. Here are some I use,
+	" these are required for me, but depending on what code you write, obviously
+	" this may differ for you.
 
-" Let vundle manage itself:
-Bundle 'gmarik/vundle'
+	" Proper JSON filetype detection, and support.
+	Bundle 'leshill/vim-json'
 
-" Just a shitload of color schemes.
-" https://github.com/flazz/vim-colorschemes#current-colorschemes
-Bundle 'flazz/vim-colorschemes'
+	" vim already has syntax support for javascript, but the indent support is
+	" horrid. This fixes that.
+	Bundle 'pangloss/vim-javascript'
 
-" Fuzzy finder -- absolutely must have.
-Bundle 'kien/ctrlp.vim'
+	" vim indents HTML very poorly on it's own. This fixes a lot of that.
+	Bundle 'indenthtml.vim'
 
-" Support for easily toggling comments.
-Bundle 'tpope/vim-commentary'
+	Plugin 'Syntastic' "uber awesome syntax and errors highlighter
 
-" In addtion to the above plugins, you'll likely need some for individual
-" non-standard syntaxes that aren't pre-bundled with vim. Here are some I use,
-" these are required for me, but depending on what code you write, obviously
-" this may differ for you.
+	" Emmet Vim
+	Plugin 'mattn/emmet-vim'
+   
+	" jsx highlighting 
+	Plugin 'mxw/vim-jsx'
 
-" Proper JSON filetype detection, and support.
-Bundle 'leshill/vim-json'
+	" I write markdown a lot. This is a good syntax.
+	Bundle 'tpope/vim-markdown'
 
-" vim already has syntax support for javascript, but the indent support is
-" horrid. This fixes that.
-Bundle 'pangloss/vim-javascript'
+	" LessCSS -- I use this every day.
+	Bundle 'groenewege/vim-less'
 
-" vim indents HTML very poorly on it's own. This fixes a lot of that.
-Bundle 'indenthtml.vim'
+	" Vim jsbeautify plugin
+	Plugin 'maksimr/vim-jsbeautify'
 
-" Emmet Vim
-Plugin 'mattn/emmet-vim'
+	" spacemacs-theme
+	Bundle 'colepeters/spacemacs-theme.vim'
+
+	" Vim Dracula theme
+	" https://draculatheme.com/vim/
+	Plugin 'dracula/vim'
+
+	" Base16 Vim colorschemes
+	Plugin 'chriskempson/base16-vim'
+
+	" Solarized 
+	Plugin 'altercation/vim-colors-solarized' 
+
+	Plugin 'delimitMate.vim'
+	" vim-fugitive use git from vim
+	Plugin 'tpope/vim-fugitive'
+
+    if iCanHazVundle == 0
+        echo "Installing Vundles, please ignore key map error messages"
+        echo ""
+        :PluginInstall
+    endif
+
+    call vundle#end() 
+    "must be last
+ 
+" Setting up Vundle - the vim plugin bundler end
+
+set nocompatible 
+
+" We have to turn this stuff back on if we want all of our features.
+filetype plugin indent on " Filetype auto-detection
+syntax on " Syntax highlighting
+
 " Autoexpand emmet with tab
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 " jsx emmet in js files
@@ -80,33 +104,6 @@ let g:user_emmet_settings = {
             \}
 
 
-" jsx highlighting 
-Plugin 'mxw/vim-jsx'
-
-" I write markdown a lot. This is a good syntax.
-Bundle 'tpope/vim-markdown'
-
-" LessCSS -- I use this every day.
-Bundle 'groenewege/vim-less'
-
-" Coffee-script syntax.
-Bundle 'kchmck/vim-coffee-script'
-
-" Vim jsbeautify plugin
-  Plugin 'maksimr/vim-jsbeautify'
-
-" spacemacs-theme
-  Bundle 'colepeters/spacemacs-theme.vim'
-
-" Vim Dracula theme
-" https://draculatheme.com/vim/
-Plugin 'dracula/vim'
-
-" Base16 Vim colorschemes
- Plugin 'chriskempson/base16-vim'
-
-" vim-fugitive use git from vim
- Plugin 'tpope/vim-fugitive'
  " fugitive git bindings
   nnoremap <space>ga :Git add %:p<CR><CR>
   nnoremap <space>gs :Gstatus<CR>
@@ -128,7 +125,6 @@ Plugin 'dracula/vim'
 " Plugin 'Townk/vim-autoclose'
 
 " Autoclose brackets and newline carriage return
-Plugin 'delimitMate.vim'
 let g:delimitMate_expand_cr=1
 let g:delimitMate_matchpairs = "(:),[:],{:},<:>,>:<"
 
@@ -139,9 +135,6 @@ map <c-f> :call JsBeautify()<cr>
 " <Ctrl-l> redraws the screen and removes any search highlighting.
  nnoremap <silent> <C-/> :nohl<CR><C-l>
 
-" We have to turn this stuff back on if we want all of our features.
-filetype plugin indent on " Filetype auto-detection
-syntax on " Syntax highlighting
 
 set tabstop=4
 set shiftwidth=4
