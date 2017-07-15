@@ -238,3 +238,7 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
  imap <down> <nop>
  imap <left> <nop>
  imap <right> <nop>
+
+autocmd BufNewFile,BufRead *.pug set filetype=pug
+ " Change tabs to spaces in pug files
+autocmd FileType pug setlocal shiftwidth=2 tabstop=2 expandtab 
