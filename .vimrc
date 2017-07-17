@@ -45,6 +45,9 @@
 
 	Plugin 'Syntastic' "uber awesome syntax and errors highlighter
 
+	" emoji-vim
+	Plugin 'junegunn/vim-emoji'
+
 	" Emmet Vim
 	Plugin 'mattn/emmet-vim'
    
@@ -106,6 +109,7 @@ let g:user_emmet_settings = {
 
  " fugitive git bindings
   nnoremap <space>ga :Git add %:p<CR><CR>
+  nnoremap <space>gj :Git add all<CR>
   nnoremap <space>gs :Gstatus<CR>
   nnoremap <space>gc :Gcommit -v -q<CR>
  " nnoremap <space>gt :Gcommit -v -q %:p<CR>
@@ -242,3 +246,6 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 autocmd BufNewFile,BufRead *.pug set filetype=pug
  " Change tabs to spaces in pug files
 autocmd FileType pug setlocal shiftwidth=2 tabstop=2 expandtab 
+
+
+
