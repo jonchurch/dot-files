@@ -109,7 +109,7 @@ let g:user_emmet_settings = {
 
  " fugitive git bindings
   nnoremap <space>ga :Git add %:p<CR><CR>
-  nnoremap <space>gj :Git add all<CR>
+  nnoremap <space>gj :Git add --all<CR><CR>
   nnoremap <space>gs :Gstatus<CR>
   nnoremap <space>gc :Gcommit -v -q<CR>
  " nnoremap <space>gt :Gcommit -v -q %:p<CR>
