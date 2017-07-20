@@ -78,7 +78,7 @@ export NVM_DIR="$HOME/.nvm"
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-Preferred editor for local and remote sessions
+# Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
@@ -100,4 +100,4 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias gm=git merge --no-ff
+alias gm="git merge --no-ff"
