@@ -17,6 +17,9 @@
     call vundle#begin()
 	" Let vundle manage itself:
     Plugin 'VundleVim/Vundle.vim'
+
+	" Run commands from vim
+	Plugin 'tpope/vim-dispatch.git'
     
 	" Just a shitload of color schemes.
 	" https://github.com/flazz/vim-colorschemes#current-colorschemes
