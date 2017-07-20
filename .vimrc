@@ -247,5 +247,3 @@ autocmd BufNewFile,BufRead *.pug set filetype=pug
  " Change tabs to spaces in pug files
 autocmd FileType pug setlocal shiftwidth=2 tabstop=2 expandtab 
 
-
-
