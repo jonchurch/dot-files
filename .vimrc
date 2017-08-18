@@ -250,3 +250,6 @@ autocmd BufNewFile,BufRead *.pug set filetype=pug
  " Change tabs to spaces in pug files
 autocmd FileType pug setlocal shiftwidth=2 tabstop=2 expandtab 
 
+" Use vim * system register to copy/paste from crouton clipboard
+nnoremap "*p :r !cat /home/shin/.crouton-clipboard/data.txt<CR>
+vnoremap "*y :'<,'>w! /home/shin/.crouton-clipboard/data.txt<CR>
