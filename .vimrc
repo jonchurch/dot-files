@@ -67,19 +67,20 @@
 	Plugin 'maksimr/vim-jsbeautify'
 
 	" spacemacs-theme
-	Bundle 'colepeters/spacemacs-theme.vim'
+	" Bundle 'colepeters/spacemacs-theme.vim'
 
-	" Vim Dracula theme
+	" Vim  theme
 	" https://draculatheme.com/vim/
 	Plugin 'dracula/vim'
 
 	" Base16 Vim colorschemes
-	Plugin 'chriskempson/base16-vim'
+	" Plugin 'chriskempson/base16-vim'
 
 	" Solarized 
-	Plugin 'altercation/vim-colors-solarized' 
+	" Plugin 'altercation/vim-colors-solarized' 
 
 	Plugin 'delimitMate.vim'
+
 	" vim-fugitive use git from vim
 	Plugin 'tpope/vim-fugitive'
 
@@ -102,6 +103,7 @@ syntax on " Syntax highlighting
 
 " Autoexpand emmet with tab
 imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+
 " jsx emmet in js files
 let g:user_emmet_settings = {
             \  'javascript' : {
@@ -231,24 +233,30 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 " Finally the color scheme. Choose whichever you want from the list in the
 " link above (back up where we included the bundle of a ton of themes.)
 
-"   colorscheme dracula
+" colorscheme dracula
 
 
 " Disable Arrow keys in Escape mode
- map <up> <nop>
- map <down> <nop>
- map <left> <nop>
- map <right> <nop>
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
 
- " Disable Arrow keys in Insert mode
- imap <up> <nop>
- imap <down> <nop>
- imap <left> <nop>
- imap <right> <nop>
+" Disable Arrow keys in Insert mode
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
 
+" Setup File types
 autocmd BufNewFile,BufRead *.pug set filetype=pug
- " Change tabs to spaces in pug files
+autocmd BufNewFile,BufRead *.js set filetype=javascript
+
+" Change tabs to spaces in pug files
 autocmd FileType pug setlocal shiftwidth=2 tabstop=2 expandtab 
+
+" Set default :Dispatch command for node files
+autocmd FileType js let b:dispatch = 'node %'
 
 " Use vim * system register to copy/paste from crouton clipboard
 nnoremap "*p :r !cat /home/shin/.crouton-clipboard/data.txt<CR>
