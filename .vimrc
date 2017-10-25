@@ -84,6 +84,9 @@
 	" vim-fugitive use git from vim
 	Plugin 'tpope/vim-fugitive'
 
+	" solidity highlighting
+	Plugin 'tomlion/vim-solidity'
+
     if iCanHazVundle == 0
         echo "Installing Vundles, please ignore key map error messages"
         echo ""
