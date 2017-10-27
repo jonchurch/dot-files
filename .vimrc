@@ -20,6 +20,9 @@
 
 	" Run commands from vim
 	Plugin 'tpope/vim-dispatch.git'
+
+	" Navigate between vim or tmux panes seamlessly
+	Plugin 'christoomey/vim-tmux-navigator'	
     
 	" Just a shitload of color schemes.
 	" https://github.com/flazz/vim-colorschemes#current-colorschemes
@@ -193,10 +196,10 @@ inoremap jf <esc>
 noremap <leader>v <C-w>v
 
 " bindings for easy split nav
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-l> <C-w>l
 
 " Use sane regex's when searching
 nnoremap / /\v
@@ -264,3 +267,6 @@ autocmd FileType js let b:dispatch = 'node %'
 " Use vim * system register to copy/paste from crouton clipboard
 nnoremap "*p :r !cat /home/shin/.crouton-clipboard/data.txt<CR>
 vnoremap "*y :'<,'>w! /home/shin/.crouton-clipboard/data.txt<CR>
+
+" Emoji completion
+set completefunc=emoji#complete
