@@ -133,7 +133,7 @@ let g:user_emmet_settings = {
  " nnoremap <space>gm :Gmove<Space>
  " nnoremap <space>gb :Git branch<Space>
  " nnoremap <space>go :Git checkout<Space>
-  nnoremap <space>gps :Dispatch! git push<CR>
+  nnoremap <space>gps :!git push<CR>
  " nnoremap <space>gpl :Dispatch! git pull<CR>
 
 " autoclose brackets
