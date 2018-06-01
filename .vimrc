@@ -276,13 +276,11 @@ autocmd FileType pug setlocal shiftwidth=2 tabstop=2 expandtab
 autocmd FileType js let b:dispatch = 'node %'
 
 " Use vim * system register to copy/paste from crouton clipboard
-nnoremap "*p :r !cat /home/shin/.crouton-clipboard/data.txt<CR>
-vnoremap "*y :'<,'>w! /home/shin/.crouton-clipboard/data.txt<CR>
+nnoremap "*p :r !cat ~/.crouton-clipboard/data.txt<CR>
+vnoremap "*y :'<,'>w! ~/.crouton-clipboard/data.txt<CR>
 
 " Emoji completion
 set completefunc=emoji#complete
-nnoremap "*p :r !cat /home/muu/.crouton-clipboard/data.txt<CR>
-vnoremap "*y :'<,'>w! /home/muu/.crouton-clipboard/data.txt<CR>
 
 " yml format mode
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
