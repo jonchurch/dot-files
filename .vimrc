@@ -26,6 +26,9 @@
 
 	" Navigate between vim or tmux panes seamlessly
 	Plugin 'christoomey/vim-tmux-navigator'	
+
+	" Vue file highlighting
+	Plugin 'posva/vim-vue'
 	
 	" Pug hightlighting
 	Bundle 'digitaltoad/vim-pug'
@@ -259,6 +262,9 @@ imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
 
+" Prevent preview window with YCM autocomplete
+set completeopt-=preview
+
 " Setup File types
 autocmd BufNewFile,BufRead *.pug set filetype=pug
 autocmd BufNewFile,BufRead *.js set filetype=javascript
@@ -280,3 +286,10 @@ vnoremap "*y :'<,'>w! /home/muu/.crouton-clipboard/data.txt<CR>
 
 " yml format mode
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" Show relative line numbers in gutter, show line number of current line
+set number
+set relativenumber
+
+highlight LineNr ctermfg=grey
+highlight CursorLineNr ctermfg=magenta
