@@ -65,7 +65,7 @@ NPM_PACKAGES="${HOME}/.npm-packages"
 
 PATH="$NPM_PACKAGES/bin:$PATH"
 
-# setup nmv
+# setup nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -106,6 +106,9 @@ function mcdir
 
 # No fast forward on git merges
 alias gm="git merge --no-ff"
+
+# Force tmux to support utf8 (fixes unicode in zsh shell prompt for agnoster)
+alias tmux="tmux -u"
 
 # Crouton system clipboard support
 (nohup node ~/.crouton-clipboard/server.js > /dev/null 2>&1 &)                                                                          
