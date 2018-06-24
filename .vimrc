@@ -1,5 +1,3 @@
-" Beginners .vimrc
-" v0.1 2012-10-22 Philip Thrasher
 
 " Setting up Vundle - the vim plugin bundler
     let iCanHazVundle=1
@@ -25,6 +23,7 @@
 	Plugin 'Valloric/YouCompleteMe'
 
 	" Navigate between vim or tmux panes seamlessly
+	" @IDK
 	Plugin 'christoomey/vim-tmux-navigator'	
 
 	" Vue file highlighting
@@ -64,7 +63,8 @@
 	Plugin 'junegunn/vim-emoji'
 
 	" Emmet Vim
-	Plugin 'mattn/emmet-vim'
+	" Emmet isnt working rn because tab goes to autocomplete
+	"Plugin 'mattn/emmet-vim'
    
 	" jsx highlighting 
 	Plugin 'mxw/vim-jsx'
@@ -73,7 +73,7 @@
 	Bundle 'tpope/vim-markdown'
 
 	" LessCSS -- I use this every day.
-	Bundle 'groenewege/vim-less'
+	" Bundle 'groenewege/vim-less'
 
 	" Vim jsbeautify plugin
 	Plugin 'maksimr/vim-jsbeautify'
@@ -91,7 +91,12 @@
 	" Solarized 
 	" Plugin 'altercation/vim-colors-solarized' 
 
+	" Pairs brackets and quotes on open
+	" This messes me up sometimes... consider yourself on probation
 	Plugin 'delimitMate.vim'
+
+	" autoclose brackets
+	" Plugin 'Townk/vim-autoclose'
 
 	" vim-fugitive use git from vim
 	Plugin 'tpope/vim-fugitive'
@@ -116,16 +121,17 @@ filetype plugin indent on " Filetype auto-detection
 syntax on " Syntax highlighting
 
 " Autoexpand emmet with tab
-imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+" Emmet isnt working rn because tab goes to autocomplete
+"imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " jsx emmet in js files
-let g:user_emmet_settings = {
-            \  'javascript' : {
-            \      'extends' : 'jsx',
-            \  },
-            \}
+" let g:user_emmet_settings = {
+"             \  'javascript' : {
+"             \      'extends' : 'jsx',
+"             \  },
+"             \}
 
-
+ " IDR where I got these or what they all do
  " fugitive git bindings
   nnoremap <space>ga :Git add %:p<CR><CR>
   nnoremap <space>gj :Git add --all<CR><CR>
@@ -144,8 +150,6 @@ let g:user_emmet_settings = {
   nnoremap <space>gps :!git push<CR>
  " nnoremap <space>gpl :Dispatch! git pull<CR>
 
-" autoclose brackets
-" Plugin 'Townk/vim-autoclose'
 
 " Autoclose brackets and newline carriage return
 let g:delimitMate_expand_cr=1
@@ -153,11 +157,7 @@ let g:delimitMate_matchpairs = "(:),[:],{:},<:>,>:<"
 
 " js-beautify
 "Plugin 'maksimr/vim-jsbeautify'
-map <c-f> :call JsBeautify()<cr>
-
-" <Ctrl-l> redraws the screen and removes any search highlighting.
- nnoremap <silent> <C-/> :nohl<CR><C-l>
-
+map <leader>f :call JsBeautify()<cr>
 
 set tabstop=4
 set shiftwidth=4
@@ -188,7 +188,7 @@ set gdefault " use the `g` flag by default.
 " allow the cursor to go anywhere in visual block mode.
 set virtualedit+=block
 
-" leader is a key that allows you to have your own "namespace" of keybindings.
+" leader is a key that allows you to have your own namespace of keybindings.
 " You'll see it a lot below as <leader>
 let mapleader = ","
 
@@ -250,7 +250,7 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 " colorscheme dracula
 
 
-" Disable Arrow keys in Escape mode
+" Disable Arrow keys in Normal mode
 map <up> <nop>
 map <down> <nop>
 map <left> <nop>
@@ -280,6 +280,7 @@ nnoremap "*p :r !cat ~/.crouton-clipboard/data.txt<CR>
 vnoremap "*y :'<,'>w! ~/.crouton-clipboard/data.txt<CR>
 
 " Emoji completion
+" @IDK have never once used this
 set completefunc=emoji#complete
 
 " yml format mode
@@ -290,4 +291,10 @@ set number
 set relativenumber
 
 highlight LineNr ctermfg=grey
-highlight CursorLineNr ctermfg=magenta
+highlight CursorLineNr ctermfg=yellow
+
+" Experiment with limiting repeated up/down
+" Causes a delay for regular j and k movements, which is annoying but forces
+" me to be even more aware when Im doing a single movement or using those keys
+nnoremap jj <nop>
+nnoremap kk <nop>
