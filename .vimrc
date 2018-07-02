@@ -104,6 +104,9 @@
 	" solidity highlighting
 	Plugin 'tomlion/vim-solidity'
 
+	" use editor config
+	Plugin 'editorconfig/editorconfig-vim'	
+
     if iCanHazVundle == 0
         echo "Installing Vundles, please ignore key map error messages"
         echo ""
@@ -134,7 +137,7 @@ syntax on " Syntax highlighting
  " IDR where I got these or what they all do
  " fugitive git bindings
   nnoremap <space>ga :Git add %:p<CR><CR>
-  nnoremap <space>gj :Git add --all<CR><CR>
+  " nnoremap <space>gj :Git add --all<CR><CR>
   nnoremap <space>gs :Gstatus<CR>
   nnoremap <space>gc :Gcommit -v -q<CR>
  " nnoremap <space>gt :Gcommit -v -q %:p<CR>
@@ -223,8 +226,11 @@ nnoremap <leader><leader> <c-^>
 " Visual line nav, not real line nav
 " If you wrap lines, vim by default won't let you move down one line to the
 " wrapped portion. This fixes that.
-noremap j gj
-noremap k gk
+"
+" Turned this off because I often have wrapped lines, and this makes relnum
+" useless
+" noremap j gj
+" noremap k gk
 
 " Plugin settings:
 " Below are some 'sane' (IMHO) defaults for a couple of the above plugins I
@@ -298,3 +304,6 @@ highlight CursorLineNr ctermfg=yellow
 " me to be even more aware when Im doing a single movement or using those keys
 nnoremap jj <nop>
 nnoremap kk <nop>
+
+" Toggle paste mode
+set pastetoggle=<leader>p
