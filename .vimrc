@@ -302,8 +302,11 @@ highlight CursorLineNr ctermfg=yellow
 " Experiment with limiting repeated up/down
 " Causes a delay for regular j and k movements, which is annoying but forces
 " me to be even more aware when Im doing a single movement or using those keys
-nnoremap jj <nop>
-nnoremap kk <nop>
+" nnoremap jj <nop>
+" nnoremap kk <nop>
 
 " Toggle paste mode
 set pastetoggle=<leader>p
+
+" Go to next tab on space space
+nnoremap <Space><Space> :tabnext<CR>
