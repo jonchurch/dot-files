@@ -66,7 +66,7 @@ NPM_PACKAGES="${HOME}/.npm-packages"
 PATH="$NPM_PACKAGES/bin:$PATH"
 
 # setup nvm
-export NVM_DIR="$(realpath $HOME/.nvm)"
+export NVM_DIR="$(grealpath $HOME/.nvm)"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
@@ -103,6 +103,8 @@ function mcdir
 {
   command mkdir $1 && cd $1
 }
+
+alias avim="vim | lolcat"
 
 # No fast forward on git merges
 alias gm="git merge --no-ff"
