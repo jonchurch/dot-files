@@ -20,7 +20,7 @@
 	Plugin 'tpope/vim-dispatch.git'
 
 	" Vim fuzzy autocomplete with tab
-	Plugin 'Valloric/YouCompleteMe'
+	" Plugin 'Valloric/YouCompleteMe'
 
 	" Navigate between vim or tmux panes seamlessly
 	" @IDK
@@ -69,7 +69,10 @@
 	" jsx highlighting 
 	Plugin 'mxw/vim-jsx'
 
-	" I write markdown a lot. This is a good syntax.
+	" tsx hl
+	Plugin 'ianks/vim-tsx'
+
+	" Markdown syntax
 	Bundle 'tpope/vim-markdown'
 
 	" LessCSS -- I use this every day.
@@ -311,3 +314,6 @@ set pastetoggle=<leader>p
 
 " Go to next tab on space space
 nnoremap <Space><Space> :tabnext<CR>
+
+" Fix backspace problems encountered on OSX
+set bs=2
