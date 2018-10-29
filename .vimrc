@@ -316,4 +316,5 @@ set pastetoggle=<leader>p
 nnoremap <Space><Space> :tabnext<CR>
 
 " Fix backspace problems encountered on OSX
+" found fix here: https://chrisjean.com/fix-backspace-in-vim/
 set bs=2
