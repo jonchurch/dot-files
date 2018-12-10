@@ -112,6 +112,9 @@ alias gm="git merge --no-ff"
 # Force tmux to support utf8 (fixes unicode in zsh shell prompt for agnoster)
 alias tmux="tmux -u"
 
+# Typos
+alias celar="clear"
+
 # Crouton system clipboard support
 (nohup node ~/.crouton-clipboard/server.js > /dev/null 2>&1 &)                                                                          
 
