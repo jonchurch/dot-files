@@ -103,6 +103,8 @@ function mcdir
 {
   command mkdir $1 && cd $1
 }
+alias srvnao="python -m SimpleHTTPServer 8000"
+
 alias lastcommit="git rev-parse HEAD"
 alias avim="vim | lolcat"
 
