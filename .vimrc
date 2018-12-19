@@ -20,7 +20,7 @@
 	Plugin 'tpope/vim-dispatch.git'
 
 	" Vim fuzzy autocomplete with tab
-	" Plugin 'Valloric/YouCompleteMe'
+	Plugin 'Valloric/YouCompleteMe'
 
 	" Navigate between vim or tmux panes seamlessly
 	" @IDK
@@ -53,6 +53,9 @@
 	" vim already has syntax support for javascript, but the indent support is
 	" horrid. This fixes that.
 	Bundle 'pangloss/vim-javascript'
+
+	" graphql query syntax
+	Bundle 'jparise/vim-graphql'
 
 	" vim indents HTML very poorly on it's own. This fixes a lot of that.
 	Bundle 'indenthtml.vim'
@@ -286,8 +289,8 @@ autocmd FileType pug setlocal shiftwidth=2 tabstop=2 expandtab
 autocmd FileType js let b:dispatch = 'node %'
 
 " Use vim * system register to copy/paste from crouton clipboard
-nnoremap "*p :r !cat ~/.crouton-clipboard/data.txt<CR>
-vnoremap "*y :'<,'>w! ~/.crouton-clipboard/data.txt<CR>
+"nnoremap "*p :r !cat ~/.crouton-clipboard/data.txt<CR>
+"vnoremap "*y :'<,'>w! ~/.crouton-clipboard/data.txt<CR>
 
 " Emoji completion
 " @IDK have never once used this
@@ -318,3 +321,6 @@ nnoremap <Space><Space> :tabnext<CR>
 " Fix backspace problems encountered on OSX
 " found fix here: https://chrisjean.com/fix-backspace-in-vim/
 set bs=2
+
+" set tmux window name to open vim file
+autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
