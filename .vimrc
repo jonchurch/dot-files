@@ -1,4 +1,3 @@
-
 " Setting up Vundle - the vim plugin bundler
     let iCanHazVundle=1
     let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
@@ -281,6 +280,7 @@ set completeopt-=preview
 " Setup File types
 autocmd BufNewFile,BufRead *.pug set filetype=pug
 autocmd BufNewFile,BufRead *.js set filetype=javascript
+autocmd BufNewFile,BufRead *.vue set filetype=vue commentstring=//\ %s
 
 " Change tabs to spaces in pug files
 autocmd FileType pug setlocal shiftwidth=2 tabstop=2 expandtab 
@@ -294,7 +294,7 @@ autocmd FileType js let b:dispatch = 'node %'
 
 " Emoji completion
 " @IDK have never once used this
-set completefunc=emoji#complete
+" set completefunc=emoji#complete
 
 " yml format mode
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
@@ -324,3 +324,16 @@ set bs=2
 
 " set tmux window name to open vim file
 autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
+
+" Keep undo history across sessions, by storing in file.
+" Only works all the time.
+if has('persistent_undo') && isdirectory(expand('~').'/.vim/backups')
+  silent !mkdir ~/.vim/backups > /dev/null 2>&1
+  set undodir=~/.vim/backups
+  set undofile
+endif
+
+" ================ Scrolling ========================
+set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set sidescrolloff=15
+set sidescroll=1
