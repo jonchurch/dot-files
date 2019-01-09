@@ -1,0 +1,10 @@
+#!/bin/sh
+SESSION=`basename $PWD`
+
+tmux -2 new-session -d -s $SESSION 
+tmux split-window -h #'npm start && zsh'
+tmux send-keys -t $SESSION:0 'npm start' C-m
+tmux rename-window -t $SESSION:0 dev
+tmux select-pane -t 0
+tmux -2 attach -t $SESSION
+
