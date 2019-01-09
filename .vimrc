@@ -204,6 +204,9 @@ let mapleader = ","
 " So we don't have to press shift when we want to get into command mode.
 nnoremap ; :
 vnoremap ; :
+" To run commands quicker
+nnoremap : :!
+vnoremap : :!
 
 " So we don't have to reach for escape to leave insert mode.
 inoremap jf <esc>
