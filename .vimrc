@@ -204,6 +204,10 @@ let mapleader = ","
 " So we don't have to press shift when we want to get into command mode.
 nnoremap ; :
 vnoremap ; :
+
+" Get ; back with ;;
+noremap ;; ;
+
 " To run commands quicker
 nnoremap : :!
 vnoremap : :!
