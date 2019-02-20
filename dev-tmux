@@ -1,5 +1,5 @@
 #!/bin/sh
-SESSION=`basename $PWD`
+SESSION=`basename $PWD | sed 's/\./dot/g'`
 
 tmux -2 new-session -d -s $SESSION 
 tmux split-window -h #'npm start && zsh'
