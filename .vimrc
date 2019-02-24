@@ -16,98 +16,75 @@
     Plugin 'VundleVim/Vundle.vim'
 
 	" Run commands from vim
+	" also don't use this much? Except I guess to run node %
 	Plugin 'tpope/vim-dispatch.git'
 
 	" Vim fuzzy autocomplete with tab
+	" this is a very heavy dep for something I don't use much
 	Plugin 'Valloric/YouCompleteMe'
 
 	" Navigate between vim or tmux panes seamlessly
-	" @IDK
+	" @IDK is this what I'm using to command-l between tmux and vim?
 	Plugin 'christoomey/vim-tmux-navigator'	
 
 	" Vue file highlighting
+	" I guess? How many highlighting deps do I really need? Is there just one
+	" I can use?
 	Plugin 'posva/vim-vue'
-	
-	" Pug hightlighting
-	Bundle 'digitaltoad/vim-pug'
     
-	" Just a shitload of color schemes.
-	" https://github.com/flazz/vim-colorschemes#current-colorschemes
-	Bundle 'flazz/vim-colorschemes'
-
-	" Fuzzy finder -- absolutely must have.
+	" Fuzzy finder 
+	" I use this a lot
 	Bundle 'kien/ctrlp.vim'
 
 	" Support for easily toggling comments.
+	" I also use this, dunno if its best?
 	Bundle 'tpope/vim-commentary'
 
-	" In addtion to the above plugins, you'll likely need some for individual
-	" non-standard syntaxes that aren't pre-bundled with vim. Here are some I use,
-	" these are required for me, but depending on what code you write, obviously
-	" this may differ for you.
-
 	" Proper JSON filetype detection, and support.
+	" this is okay, but I don't really use it much (sometimes I get a warning
+	" on save but idk if its coming from here, and its not very useful for
+	" linting)
 	Bundle 'leshill/vim-json'
 
-	" vim already has syntax support for javascript, but the indent support is
-	" horrid. This fixes that.
-	Bundle 'pangloss/vim-javascript'
 
 	" graphql query syntax
 	Bundle 'jparise/vim-graphql'
 
 	" vim indents HTML very poorly on it's own. This fixes a lot of that.
+	" DOES IT THOUGH? I care more about jsx, but I don't usually have great
+	" experience with indented html
 	Bundle 'indenthtml.vim'
 
+	" Do I want to use this? What exactly does it give me?
 	Plugin 'Syntastic' "uber awesome syntax and errors highlighter
 
 	" emoji-vim
-	Plugin 'junegunn/vim-emoji'
+	" don't think I need this to display emoji in vim, not sure?
+	" Plugin 'junegunn/vim-emoji'
 
-	" Emmet Vim
-	" Emmet isnt working rn because tab goes to autocomplete
-	"Plugin 'mattn/emmet-vim'
+	" JS and JSX syntax, uses pangloss/vim-javascript and mxw/vim-jsx-pretty
+	Plugin 'chemzqm/vim-jsx-improve'
    
-	" jsx highlighting 
-	Plugin 'mxw/vim-jsx'
-
 	" tsx hl
 	Plugin 'ianks/vim-tsx'
 
 	" Markdown syntax
 	Bundle 'tpope/vim-markdown'
 
-	" LessCSS -- I use this every day.
+	" LessCSS -- I don't use this
 	" Bundle 'groenewege/vim-less'
 
 	" Vim jsbeautify plugin
-	Plugin 'maksimr/vim-jsbeautify'
-
-	" spacemacs-theme
-	" Bundle 'colepeters/spacemacs-theme.vim'
+	" Plugin 'maksimr/vim-jsbeautify'
+	" I haven't been using this either
 
 	" Vim  theme
 	" https://draculatheme.com/vim/
 	Plugin 'dracula/vim'
 
-	" Base16 Vim colorschemes
-	" Plugin 'chriskempson/base16-vim'
-
-	" Solarized 
-	" Plugin 'altercation/vim-colors-solarized' 
-
 	" Pairs brackets and quotes on open
 	" This messes me up sometimes... consider yourself on probation
 	Plugin 'delimitMate.vim'
-
-	" autoclose brackets
-	" Plugin 'Townk/vim-autoclose'
-
-	" vim-fugitive use git from vim
-	Plugin 'tpope/vim-fugitive'
-
-	" solidity highlighting
-	Plugin 'tomlion/vim-solidity'
 
 	" use editor config
 	Plugin 'editorconfig/editorconfig-vim'	
@@ -128,49 +105,14 @@ set encoding=utf-8
 filetype plugin indent on " Filetype auto-detection
 syntax on " Syntax highlighting
 
-" Autoexpand emmet with tab
-" Emmet isnt working rn because tab goes to autocomplete
-"imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
-
-" jsx emmet in js files
-" let g:user_emmet_settings = {
-"             \  'javascript' : {
-"             \      'extends' : 'jsx',
-"             \  },
-"             \}
-
- " IDR where I got these or what they all do
- " fugitive git bindings
-  nnoremap <space>ga :Git add %:p<CR><CR>
-  " nnoremap <space>gj :Git add --all<CR><CR>
-  nnoremap <space>gs :Gstatus<CR>
-  nnoremap <space>gc :Gcommit -v -q<CR>
- " nnoremap <space>gt :Gcommit -v -q %:p<CR>
-  nnoremap <space>gd :Gdiff<CR>
- " nnoremap <space>ge :Gedit<CR>
- " nnoremap <space>gr :Gread<CR>
- " nnoremap <space>gw :Gwrite<CR><CR>
- " nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
- " nnoremap <space>gp :Ggrep<Space>
- " nnoremap <space>gm :Gmove<Space>
- " nnoremap <space>gb :Git branch<Space>
- " nnoremap <space>go :Git checkout<Space>
-  nnoremap <space>gps :!git push<CR>
- " nnoremap <space>gpl :Dispatch! git pull<CR>
-
-
 " Autoclose brackets and newline carriage return
 let g:delimitMate_expand_cr=1
 let g:delimitMate_matchpairs = "(:),[:],{:},<:>,>:<"
 
-" js-beautify
-"Plugin 'maksimr/vim-jsbeautify'
-map <leader>f :call JsBeautify()<cr>
-
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set noexpandtab " use tabs 
+set noexpandtab " use tabs (prolly changing to spaces soon huh?)
 set smarttab " let's tab key insert 'tab stops', and bksp deletes tabs.
 set shiftround " tab / shifting moves to closest tabstop.
 set autoindent " Match indents on new lines.
@@ -200,17 +142,16 @@ set virtualedit+=block
 " You'll see it a lot below as <leader>
 let mapleader = ","
 
-
 " So we don't have to press shift when we want to get into command mode.
 nnoremap ; :
 vnoremap ; :
 
 " Get ; back with ;;
-noremap ;; ;
+" noremap ;; ;
 
-" To run commands quicker
-nnoremap : :!
-vnoremap : :!
+" Get ; back with :
+nnoremap : ;
+vnoremap : ;
 
 " So we don't have to reach for escape to leave insert mode.
 inoremap jf <esc>
@@ -250,6 +191,8 @@ nnoremap <leader><leader> <c-^>
 " referenced.
 
 " Map the key for toggling comments with vim-commentary
+" this doesnt make sense to me, leader should be , but I do this with gc in
+" normal mode
 nnoremap <leader>c <Plug>CommentaryLine
 
 " Remap ctrlp to ctrl-t -- map it however you like, or stick with thesearch
@@ -258,50 +201,53 @@ nnoremap <leader>c <Plug>CommentaryLine
 let g:ctrlp_map = '<c-t>'
 
 " Let ctrlp have up to 30 results.
-let g:ctrlp_max_height = 30
+" Maybe less?
+let g:ctrlp_max_height = 20
 
 " custom ctrlp ignore
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+" having this ignore is sadly v vimportant
+" set wildignore+=*/tmp/*,*.zip,*/node_modules/*,*/.git/*,DS_Store
+let g:ctrlp_custom_ignore = //'node_modules\|DS_Store\|git'
 
 " Finally the color scheme. Choose whichever you want from the list in the
 " link above (back up where we included the bundle of a ton of themes.)
 
-" colorscheme dracula
-
+colorscheme dracula
 
 " Disable Arrow keys in Normal mode
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
+" I've broken this habit, I prolly don't need these anymore
+" map <up> <nop>
+" map <down> <nop>
+" map <left> <nop>
+" map <right> <nop>
 
 " Disable Arrow keys in Insert mode
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
+" imap <up> <nop>
+" imap <down> <nop>
+" imap <left> <nop>
+" imap <right> <nop>
 
 " Prevent preview window with YCM autocomplete
 set completeopt-=preview
 
 " Setup File types
+" dunno if I really need these
 autocmd BufNewFile,BufRead *.pug set filetype=pug
 autocmd BufNewFile,BufRead *.js set filetype=javascript
 autocmd BufNewFile,BufRead *.vue set filetype=vue commentstring=//\ %s
 
 " Change tabs to spaces in pug files
+" I gotta figure out my stance on tabs/spaces again. prolly go spaces?
 autocmd FileType pug setlocal shiftwidth=2 tabstop=2 expandtab 
 
 " Set default :Dispatch command for node files
+" I actually do this from command mode by hand
 autocmd FileType js let b:dispatch = 'node %'
 
 " Use vim * system register to copy/paste from crouton clipboard
+" don't need this anymore if I'm sticking to Mac
 "nnoremap "*p :r !cat ~/.crouton-clipboard/data.txt<CR>
 "vnoremap "*y :'<,'>w! ~/.crouton-clipboard/data.txt<CR>
-
-" Emoji completion
-" @IDK have never once used this
-" set completefunc=emoji#complete
 
 " yml format mode
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
@@ -320,6 +266,7 @@ highlight CursorLineNr ctermfg=yellow
 " nnoremap kk <nop>
 
 " Toggle paste mode
+" idk if I need this mode anymore...
 set pastetoggle=<leader>p
 
 " Go to next tab on space space
@@ -327,13 +274,15 @@ nnoremap <Space><Space> :tabnext<CR>
 
 " Fix backspace problems encountered on OSX
 " found fix here: https://chrisjean.com/fix-backspace-in-vim/
+" idr why?
 set bs=2
 
 " set tmux window name to open vim file
+" idk if this actually works?
 autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
 
 " Keep undo history across sessions, by storing in file.
-" Only works all the time.
+" This is nice, but is this really a good idea?
 if has('persistent_undo') && isdirectory(expand('~').'/.vim/backups')
   silent !mkdir ~/.vim/backups > /dev/null 2>&1
   set undodir=~/.vim/backups
