@@ -3,4 +3,4 @@
 [credential]
 	helper = cache --timeout=10800
 [pager]
-	branch = false
+	branch = false  # no paging for git branch commands like gb -v, prints to stdout
