@@ -5,7 +5,11 @@
  export PATH=~/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=${HOME}/.oh-my-zsh
+ export ZSH=${HOME}/.oh-my-zsh
+
+# Add pipenv to path
+export PYTHON_BIN_PATH="$(python -m site --user-base)/bin"
+export "PATH=$PATH:$PYTHON_BIN_PATH"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -54,7 +58,7 @@
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z)
+plugins=(git z shrink-path)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -109,7 +113,7 @@ alias lastcommit="git rev-parse HEAD"
 alias avim="vim | lolcat"
 
 # No fast forward on git merges
-alias gm="git merge --no-ff"
+# alias gm="git merge --no-ff"
 
 # Force tmux to support utf8 (fixes unicode in zsh shell prompt for agnoster)
 alias tmux="tmux -u"
@@ -143,3 +147,13 @@ function -auto-ls-after-cd() {
   fi
 }
 add-zsh-hook chpwd -auto-ls-after-cd
+
+# Go paths
+export GOPATH="$HOME/go"
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+
+# Shorten cwd path using shrink_path fish-like plugin
+prompt_dir() {
+	prompt_segment blue black "$(shrink_path -f)"
+}

@@ -27,6 +27,9 @@
 	" @IDK is this what I'm using to command-l between tmux and vim?
 	Plugin 'christoomey/vim-tmux-navigator'	
 
+	" Neoformat for prettier js formatting
+	Plugin 'sbdchd/neoformat'
+
 	" Vue file highlighting
 	" I guess? How many highlighting deps do I really need? Is there just one
 	" I can use?
@@ -207,12 +210,12 @@ let g:ctrlp_max_height = 20
 " custom ctrlp ignore
 " having this ignore is sadly v vimportant
 " set wildignore+=*/tmp/*,*.zip,*/node_modules/*,*/.git/*,DS_Store
-let g:ctrlp_custom_ignore = //'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 " Finally the color scheme. Choose whichever you want from the list in the
 " link above (back up where we included the bundle of a ton of themes.)
 
-colorscheme dracula
+" colorscheme dracula
 
 " Disable Arrow keys in Normal mode
 " I've broken this habit, I prolly don't need these anymore
@@ -293,3 +296,18 @@ endif
 set scrolloff=8         "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
+
+" Run prettier on save
+autocmd BufWritePre *.js Neoformat
+
+
+" Syntastic eslint setup
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = 'npm run lint --'
