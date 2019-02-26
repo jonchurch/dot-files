@@ -6,7 +6,7 @@ These are my configuration files for my editor and terminal setup. A constant wo
 
 The tools I use are the following:
 * iTerm
-* Vim
+* Vim 8
 * Tmux
 * Zsh
 * oh-my-zsh
