@@ -1,0 +1,50 @@
+#!/bin/sh
+
+# Ask user for their git email and name
+# read -p 'Git Config:: Name: ' namevar
+read -p "git config --global user.name \"?\": " namevar
+read -p "git config --global user.email \"?\": " emailvar
+# read -p 'Git Config:: Email: ' emailvar
+
+if ! command -v brew >/dev/null; then
+ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+# add cask for installing gui apps
+brew tap caskroom/cask
+
+# unix tools
+brew install tree \
+	coreutils \
+	htop \
+	openssl \
+	unrar \
+	wget
+
+# install deps
+brew install git \
+	tmux \
+	vim \
+	zsh \
+	nvm \
+	awscli
+
+# install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# install yarn, but tell it not to install node
+brew install yarn --ignore-dependencies
+
+# gui based apps
+brew cask install iterm2 \
+	google-chrome \
+	quicklook-json
+
+# Setup dotfiles
+git clone https://github.com/jonchurch/dot-files ~/dot-files
+rsync -av --progress ~/dot-files/ ~/ --exclude .git --exclude Readme.md
+
+# setup git config
+git config --global user.name "$namevar"
+git config --global user.email "$emailvar"
+git config --global credentials.helper osxkeychain
