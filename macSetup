@@ -6,6 +6,9 @@ read -p "git config --global user.name \"?\": " namevar
 read -p "git config --global user.email \"?\": " emailvar
 # read -p 'Git Config:: Email: ' emailvar
 
+# install xcode cli tools (need a c compiler for Node addons)
+xcode-select --install
+
 if ! command -v brew >/dev/null; then
  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
