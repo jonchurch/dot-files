@@ -41,7 +41,8 @@ brew install yarn --ignore-dependencies
 # gui based apps
 brew cask install iterm2 \
 	google-chrome \
-	quicklook-json
+	quicklook-json \
+	vlc
 
 # Setup dotfiles
 git clone https://github.com/jonchurch/dot-files ~/dot-files
