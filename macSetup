@@ -52,3 +52,4 @@ rsync -av --progress ~/dot-files/ ~/ --exclude .git --exclude Readme.md
 git config --global user.name "$namevar"
 git config --global user.email "$emailvar"
 git config --global credentials.helper osxkeychain
+git config --global core.excludesfile ~/.gitignore_global
