@@ -21,7 +21,7 @@
 
 	" Vim fuzzy autocomplete with tab
 	" this is a very heavy dep for something I don't use much
-	Plugin 'Valloric/YouCompleteMe'
+	" Plugin 'Valloric/YouCompleteMe'
 
 	" Navigate between vim or tmux panes seamlessly
 	" @IDK is this what I'm using to command-l between tmux and vim?
@@ -293,13 +293,12 @@ if has('persistent_undo') && isdirectory(expand('~').'/.vim/backups')
 endif
 
 " ================ Scrolling ========================
-set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set scrolloff=5         "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 
 " Run prettier on save
 autocmd BufWritePre *.js Neoformat
-
 
 " Syntastic eslint setup
 set statusline+=%#warningmsg#
