@@ -71,6 +71,10 @@
 	" tsx hl
 	Plugin 'ianks/vim-tsx'
 
+	" tsx and jsx
+	Plugin 'leafgarland/typescript-vim'
+	Plugin 'peitalin/vim-jsx-typescript'
+
 	" Markdown syntax
 	Bundle 'tpope/vim-markdown'
 
@@ -111,6 +115,9 @@ syntax on " Syntax highlighting
 " Autoclose brackets and newline carriage return
 let g:delimitMate_expand_cr=1
 let g:delimitMate_matchpairs = "(:),[:],{:},<:>,>:<"
+
+" Highlight md code blocks
+let g:markdown_github_languages = ['js', 'javascript']
 
 set tabstop=4
 set shiftwidth=4
@@ -298,7 +305,7 @@ set sidescrolloff=15
 set sidescroll=1
 
 " Run prettier on save
-autocmd BufWritePre *.js Neoformat
+autocmd BufWritePre *.js,*.md Neoformat
 
 " Syntastic eslint setup
 set statusline+=%#warningmsg#
