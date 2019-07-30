@@ -117,7 +117,10 @@ let g:delimitMate_expand_cr=1
 let g:delimitMate_matchpairs = "(:),[:],{:},<:>,>:<"
 
 " Highlight md code blocks
-let g:markdown_github_languages = ['js', 'javascript']
+" let g:markdown_github_languages = ['js', 'javascript']
+
+" Highlight md code blocks
+let g:markdown_fenced_languages = ['html', 'javascript', 'bash=sh', 'json']
 
 set tabstop=4
 set shiftwidth=4
