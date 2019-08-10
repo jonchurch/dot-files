@@ -22,7 +22,8 @@ brew install tree \
 	htop \
 	openssl \
 	unrar \
-	wget
+	wget \
+	bat
 
 # install deps
 brew install git \
