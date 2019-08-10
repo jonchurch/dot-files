@@ -31,9 +31,13 @@ NPM_PACKAGES="${HOME}/.npm-packages"
 PATH="$NPM_PACKAGES/bin:$PATH"
 
 # setup nvm
-export NVM_DIR="$(grealpath $HOME/.nvm)"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+# export NVM_DIR="$(grealpath $HOME/.nvm)"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
 
 # Unset manpath so we can inherit from /etc/manpath via the `manpath` command
 # unset MANPATH # delete if you already modified MANPATH elsewhere in your config
@@ -73,6 +77,9 @@ alias celar="clear"
 alias cler="clear"
 alias clera="clear"
 
+# bat is improved cat
+alias cat="bat"
+
 # Start tmux session
 alias start="sh ~/dev-tmux"
 
@@ -80,15 +87,15 @@ alias start="sh ~/dev-tmux"
 autoload -U add-zsh-hook
 
 # auto ls after cd
-function -auto-ls-after-cd() {
-  emulate -L zsh
-  # Only in response to a user-initiated `cd`, not indirectly (eg. via another
-  # function).
-  if [ "$ZSH_EVAL_CONTEXT" = "toplevel:shfunc" ]; then
-    ls -a
-  fi
-}
-add-zsh-hook chpwd -auto-ls-after-cd
+# function -auto-ls-after-cd() {
+#   emulate -L zsh
+#   # Only in response to a user-initiated `cd`, not indirectly (eg. via another
+#   # function).
+#   if [ "$ZSH_EVAL_CONTEXT" = "toplevel:shfunc" ]; then
+#     ls -a
+#   fi
+# }
+# add-zsh-hook chpwd -auto-ls-after-cd
 
 # # Go paths
 # export GOPATH="$HOME/go"
@@ -99,3 +106,13 @@ add-zsh-hook chpwd -auto-ls-after-cd
 prompt_dir() {
 	prompt_segment blue black "$(shrink_path -f)"
 }
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/jon/.nvm/versions/node/v12.5.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/jon/.nvm/versions/node/v12.5.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/jon/.nvm/versions/node/v12.5.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/jon/.nvm/versions/node/v12.5.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/jon/.nvm/versions/node/v12.5.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/jon/.nvm/versions/node/v12.5.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
