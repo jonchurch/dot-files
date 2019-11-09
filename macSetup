@@ -42,7 +42,6 @@ brew install yarn --ignore-dependencies
 # gui based apps
 brew cask install iterm2 \
 	google-chrome \
-	quicklook-json \
 	vlc
 
 # Setup dotfiles
