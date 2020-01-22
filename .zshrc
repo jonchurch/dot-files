@@ -97,10 +97,10 @@ autoload -U add-zsh-hook
 # }
 # add-zsh-hook chpwd -auto-ls-after-cd
 
-# # Go paths
-# export GOPATH="$HOME/go"
-# export GOROOT="$(brew --prefix golang)/libexec"
-# export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+# Go paths
+export GOPATH="$HOME/.go"
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
 # Shorten cwd path using shrink_path fish-like plugin
 prompt_dir() {
