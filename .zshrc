@@ -35,6 +35,7 @@ PATH="$NPM_PACKAGES/bin:$PATH"
 
 ## NOTE This was my original setup for sourcing NVM, before I experimented with deferred loading...
 	# I've also learned that nvm maintainers do not recommend installing w/ brew, so maybe I should step back and reevaluate
+		# Ideally, these snippets will be compatible w/ Mac and Linux as much as possible, which the use of brew breaks anyways
 # setup nvm
 # export NVM_DIR=~/.nvm
 # source $(brew --prefix nvm)/nvm.sh
