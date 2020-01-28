@@ -27,11 +27,14 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+## NOTE I don't remember why I added this? will have to check commit history
 # tell npm where global packages live
 NPM_PACKAGES="${HOME}/.npm-packages"
-
 PATH="$NPM_PACKAGES/bin:$PATH"
 
+
+## NOTE This was my original setup for sourcing NVM, before I experimented with deferred loading...
+	# I've also learned that nvm maintainers do not recommend installing w/ brew, so maybe I should step back and reevaluate
 # setup nvm
 # export NVM_DIR=~/.nvm
 # source $(brew --prefix nvm)/nvm.sh
@@ -39,6 +42,10 @@ PATH="$NPM_PACKAGES/bin:$PATH"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+
+## NOTE This is my new way of sourcing nvm, but I've noticed that on startup it's using latest node not the default alias
+#	That is, until I run an nvm command and trigger the lazy-loading of nvm, which suddenly switches back to default
+	#	That does not seem good...
 export NVM_DIR="$HOME/.nvm"
 # [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
 export PATH="$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/bin:$PATH"
