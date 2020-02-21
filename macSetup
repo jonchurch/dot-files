@@ -23,7 +23,8 @@ brew install tree \
 	openssl \
 	unrar \
 	wget \
-	bat
+	bat \
+	jq
 
 # install deps
 brew install git \
