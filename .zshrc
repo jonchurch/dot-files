@@ -72,6 +72,8 @@ fi
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+alias yeet="rm -rf"
+
 function mcdir
 {
   command mkdir $1 && cd $1
@@ -79,6 +81,10 @@ function mcdir
 alias srvnao="python -m SimpleHTTPServer 8000"
 
 alias lastcommit="git rev-parse HEAD"
+
+# update all outdated deps to latest semver major version
+alias npmyeet="npm outdated -p | cut -d ':' -f 4 | xargs npm i"
+
 # alias avim="vim | lolcat"
 
 # No fast forward on git merges
