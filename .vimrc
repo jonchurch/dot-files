@@ -59,7 +59,7 @@
 	Bundle 'indenthtml.vim'
 
 	" Do I want to use this? What exactly does it give me?
-	Plugin 'Syntastic' "uber awesome syntax and errors highlighter
+	" Plugin 'Syntastic' "uber awesome syntax and errors highlighter
 
 	" emoji-vim
 	" don't think I need this to display emoji in vim, not sure?
@@ -96,6 +96,9 @@
 	" use editor config
 	Plugin 'editorconfig/editorconfig-vim'	
 
+	" ALE Linting
+	Plugin 'dense-analysis/ale'
+
     if iCanHazVundle == 0
         echo "Installing Vundles, please ignore key map error messages"
         echo ""
@@ -116,16 +119,21 @@ syntax on " Syntax highlighting
 let g:delimitMate_expand_cr=1
 let g:delimitMate_matchpairs = "(:),[:],{:},<:>,>:<"
 
+" Enable spellchecking in md files
+" autocmd BufNewFile,BufRead *.md set ft=markdown spell
+" dont spellcheck urls
+" syn match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell
+
 " Highlight md code blocks
 " let g:markdown_github_languages = ['js', 'javascript']
 
 " Highlight md code blocks
 let g:markdown_fenced_languages = ['html', 'javascript', 'bash=sh', 'json']
 
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set noexpandtab " use tabs (prolly changing to spaces soon huh?)
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab " use tabs (prolly changing to spaces soon huh?)
 set smarttab " let's tab key insert 'tab stops', and bksp deletes tabs.
 set shiftround " tab / shifting moves to closest tabstop.
 set autoindent " Match indents on new lines.
@@ -151,8 +159,6 @@ set gdefault " use the `g` flag by default.
 " allow the cursor to go anywhere in visual block mode.
 set virtualedit+=block
 
-" leader is a key that allows you to have your own namespace of keybindings.
-" You'll see it a lot below as <leader>
 let mapleader = ","
 
 " So we don't have to press shift when we want to get into command mode.
@@ -208,13 +214,10 @@ nnoremap <leader><leader> <c-^>
 " normal mode
 nnoremap <leader>c <Plug>CommentaryLine
 
-" Remap ctrlp to ctrl-t -- map it however you like, or stick with thesearch
-" defaults. Additionally, in my OS, I remap caps lock to control. I never use
-" caps lock. This is highly recommended.
+" Remap ctrlp to ctrl-t 
 let g:ctrlp_map = '<c-t>'
 
-" Let ctrlp have up to 30 results.
-" Maybe less?
+" Let ctrlp have up to 20 results.
 let g:ctrlp_max_height = 20
 
 " custom ctrlp ignore
@@ -308,15 +311,29 @@ set sidescrolloff=15
 set sidescroll=1
 
 " Run prettier on save
-autocmd BufWritePre *.js,*.md Neoformat
+" autocmd BufWritePre *.js,*.md Neoformat
+
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\		'typescript': ['eslint'],
+\		'markdown': ['prettier']
+\}
+let g:ale_fix_on_save = 1
+
+let g:ale_sign_error = '!'
+let g:ale_sign_warning = '_'
+
+" Navigate to ALE errors
+nnoremap <silent> <leader>j :ALENext<cr>
+nnoremap <silent> <leader>k :ALEPrevious<cr>
 
 " Syntastic eslint setup
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exe = 'npm run lint --'
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_eslint_exe = 'npm run lint --'
