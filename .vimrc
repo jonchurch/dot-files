@@ -1,16 +1,16 @@
 " Setting up Vundle - the vim plugin bundler
     let iCanHazVundle=1
-    let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+    let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
     if !filereadable(vundle_readme) 
         echo "Installing Vundle.."
         echo ""
         silent !mkdir -p ~/.vim/bundle
-        silent !git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/vundle
+        silent !git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
         let iCanHazVundle=0
     endif
     set nocompatible              " be iMproved, required
     filetype off                  " required
-    set rtp+=~/.vim/bundle/vundle/
+    set rtp+=~/.vim/bundle/Vundle.vim
     call vundle#begin()
 	" Let vundle manage itself:
     Plugin 'VundleVim/Vundle.vim'
@@ -109,6 +109,8 @@
     "must be last
 
 " YouComplete needs utf-8 encoding
+" I'm not using YCM anymore, but I think this is still a relevant feature?
+" I think it's necessary for displaying unicode, but not sure
 set encoding=utf-8
 
 " We have to turn this stuff back on if we want all of our features.
