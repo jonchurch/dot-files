@@ -4,7 +4,7 @@
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
     ZSH_THEME="agnoster"
 
-plugins=(git z shrink-path)
+plugins=(zsh-nvm git z shrink-path)
 
 source $ZSH/oh-my-zsh.sh
 
