@@ -1,6 +1,13 @@
 [core]
 	editor = vim
+	excludesfile = ~/.gitignore_global
 [credential]
-	helper = cache --timeout=10800
+	; helper = cache --timeout=10800
+	helper = osxkeychain
 [pager]
-	branch = false  # no paging for git branch commands like gb -v, prints to stdout
+  branch = false  # no paging for git branch commands like gb -v, prints to stdout
+[merge "npm-merge-driver"]
+	name = automatically merge npm lockfiles
+	driver = npx npm-merge-driver merge %A %O %B %P
+[alias]
+	pr = "!f() { git fetch -fu ${2:-upstream} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
