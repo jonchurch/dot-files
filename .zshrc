@@ -20,43 +20,11 @@ export EDITOR=vim
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z shrink-path)
+plugins=(git z shrink-path nvm)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-## NOTE I don't remember why I added this? will have to check commit history
-# tell npm where global packages live
-NPM_PACKAGES="${HOME}/.npm-packages"
-PATH="$NPM_PACKAGES/bin:$PATH"
-
-
-## NOTE This was my original setup for sourcing NVM, before I experimented with deferred loading...
-	# I've also learned that nvm maintainers do not recommend installing w/ brew, so maybe I should step back and reevaluate
-		# Ideally, these snippets will be compatible w/ Mac and Linux as much as possible, which the use of brew breaks anyways
-# setup nvm
-# export NVM_DIR=~/.nvm
-# source $(brew --prefix nvm)/nvm.sh
-export NVM_DIR="$(grealpath $HOME/.nvm)"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
-## NOTE This is my new way of sourcing nvm, but I've noticed that on startup it's using latest node not the default alias
-#	That is, until I run an nvm command and trigger the lazy-loading of nvm, which suddenly switches back to default
-	#	That does not seem good...
-# export NVM_DIR="$HOME/.nvm"
-# # [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
-# export PATH="$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/bin:$PATH"
-# alias nvm="unalias nvm; [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"; nvm $@"
-
-
-
-# Unset manpath so we can inherit from /etc/manpath via the `manpath` command
-# unset MANPATH # delete if you already modified MANPATH elsewhere in your config
-# export MANPATH="$NPM_PACKAGES/share/man:$(manpath)")
-# export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
