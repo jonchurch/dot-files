@@ -1,6 +1,8 @@
 # enable this and zprof on last line for profiling zshrc load time
 #zmodload zsh/zprof
 
+export EDITOR=vim
+
 # Add awsebcli to path
  export PATH=~/.local/bin:$PATH
 
@@ -39,18 +41,18 @@ PATH="$NPM_PACKAGES/bin:$PATH"
 # setup nvm
 # export NVM_DIR=~/.nvm
 # source $(brew --prefix nvm)/nvm.sh
-# export NVM_DIR="$(grealpath $HOME/.nvm)"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+export NVM_DIR="$(grealpath $HOME/.nvm)"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
 ## NOTE This is my new way of sourcing nvm, but I've noticed that on startup it's using latest node not the default alias
 #	That is, until I run an nvm command and trigger the lazy-loading of nvm, which suddenly switches back to default
 	#	That does not seem good...
-export NVM_DIR="$HOME/.nvm"
-# [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
-export PATH="$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/bin:$PATH"
-alias nvm="unalias nvm; [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"; nvm $@"
+# export NVM_DIR="$HOME/.nvm"
+# # [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
+# export PATH="$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/bin:$PATH"
+# alias nvm="unalias nvm; [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"; nvm $@"
 
 
 
@@ -62,21 +64,23 @@ alias nvm="unalias nvm; [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='mvim'
-fi
-
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 alias yeet="rm -rf"
 
+function search_man { 
+  LESS=+/^[[:blank:]]+"$2" man "$1" ;
+}
+
 function mcdir
 {
   command mkdir $1 && cd $1
+}
+
+function mcdirp 
+{
+  command mkdir -p $1 && cd $1
 }
 alias srvnao="python -m SimpleHTTPServer 8000"
 
@@ -139,3 +143,7 @@ prompt_dir() {
 [[ -f /Users/jon/.nvm/versions/node/v12.5.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/jon/.nvm/versions/node/v12.5.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
 
 # zprof
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="/usr/local/opt/qt/bin:$PATH"
