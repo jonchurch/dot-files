@@ -9,9 +9,6 @@ export EDITOR=vim
 # Path to your oh-my-zsh installation.
  export ZSH=${HOME}/.oh-my-zsh
 
-# Add pipenv to path
-export PYTHON_BIN_PATH="$(python -m site --user-base)/bin"
-export "PATH=$PATH:$PYTHON_BIN_PATH"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -89,11 +86,6 @@ alias lastcommit="git rev-parse HEAD"
 # update all outdated deps to latest semver major version
 alias npmyeet="npm outdated -p | cut -d ':' -f 4 | xargs npm i"
 
-# alias avim="vim | lolcat"
-
-# No fast forward on git merges
-# alias gm="git merge --no-ff"
-
 # Force tmux to support utf8 (fixes unicode in zsh shell prompt for agnoster)
 alias tmux="tmux -u"
 
@@ -111,21 +103,6 @@ alias start="sh ~/dev-tmux"
 ## Hooks
 autoload -U add-zsh-hook
 
-# auto ls after cd
-# function -auto-ls-after-cd() {
-#   emulate -L zsh
-#   # Only in response to a user-initiated `cd`, not indirectly (eg. via another
-#   # function).
-#   if [ "$ZSH_EVAL_CONTEXT" = "toplevel:shfunc" ]; then
-#     ls -a
-#   fi
-# }
-# add-zsh-hook chpwd -auto-ls-after-cd
-
-# Go paths
-export GOPATH="$HOME/.go"
-export GOROOT="$(brew --prefix golang)/libexec"
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
 # Shorten cwd path using shrink_path fish-like plugin
 prompt_dir() {
@@ -147,3 +124,12 @@ prompt_dir() {
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="/usr/local/opt/qt/bin:$PATH"
+
+# Add pipenv to path
+export PYTHON_BIN_PATH="$(python -m site --user-base)/bin"
+export "PATH=$PATH:$PYTHON_BIN_PATH"
+
+# Go paths
+export GOPATH="$HOME/.go"
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
