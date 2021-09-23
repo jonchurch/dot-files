@@ -3,9 +3,10 @@
 	excludesfile = ~/.gitignore_global
 [credential]
 	; helper = cache --timeout=10800
-	helper = osxkeychain
+	; helper = osxkeychain
 [pager]
-  branch = false  # no paging for git branch commands like gb -v, prints to stdout
+  core = less -F
+  ; branch = false  # no paging for git branch commands like gb -v, prints to stdout
 [merge "npm-merge-driver"]
 	name = automatically merge npm lockfiles
 	driver = npx npm-merge-driver merge %A %O %B %P
