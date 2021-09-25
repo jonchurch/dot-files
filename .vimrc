@@ -297,7 +297,7 @@ set bs=2
 
 " set tmux window name to open vim file
 " idk if this actually works?
-autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
+autocmd BufEnter,BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%"))
 
 " Keep undo history across sessions, by storing in file.
 " This is nice, but is this really a good idea?
@@ -314,9 +314,10 @@ set sidescroll=1
 
 " Run prettier on save
 " autocmd BufWritePre *.js,*.md Neoformat
-
+let g:ale_linter_aliases = {'jsx': ['javascript']}
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
+\   'javascriptreact': ['eslint'],
 \		'typescript': ['eslint'],
 \		'markdown': ['prettier']
 \}
