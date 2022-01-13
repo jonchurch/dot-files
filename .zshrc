@@ -77,5 +77,9 @@ prompt_dir() {
 	prompt_segment blue black "$(shrink_path -f)"
 }
 
+# WSL settings
+# set default browser for opening pages from wsl to wslview
+# export BROWSER=wslview
+
 # zprof
 
