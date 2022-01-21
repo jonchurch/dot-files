@@ -1,0 +1,4 @@
+{
+  "tsserver.npm": "~/.nvm",
+  "coc.preferences.formatOnSaveFiletypes": ["javascript", "javascriptreact", "css", "scss"]
+}
