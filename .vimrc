@@ -1,112 +1,77 @@
-" Setting up Vundle - the vim plugin bundler
-    let iCanHazVundle=1
-    let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
-    if !filereadable(vundle_readme) 
-        echo "Installing Vundle.."
-        echo ""
-        silent !mkdir -p ~/.vim/bundle
-        silent !git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
-        let iCanHazVundle=0
-    endif
-    set nocompatible              " be iMproved, required
-    filetype off                  " required
-    set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#begin()
-	" Let vundle manage itself:
-    Plugin 'VundleVim/Vundle.vim'
+" Auto install vim-plug if not present
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-	" Run commands from vim
-	" also don't use this much? Except I guess to run node %
-	Plugin 'tpope/vim-dispatch.git'
+" vim-plug plugin directory
+call plug#begin('~/.vim/plugged')
 
-	" Vim fuzzy autocomplete with tab
-	" this is a very heavy dep for something I don't use much
-	" Plugin 'Valloric/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-	" Navigate between vim or tmux panes seamlessly
-	" @IDK is this what I'm using to command-l between tmux and vim?
-	Plugin 'christoomey/vim-tmux-navigator'	
+" Run commands from vim
+" also don't use this much? Except I guess to run node %
+Plug 'tpope/vim-dispatch'
 
-	" Neoformat for prettier js formatting
-	Plugin 'sbdchd/neoformat'
+" Vim fuzzy autocomplete with tab
+" this is a very heavy dep for something I don't use much
+" Plugin 'Valloric/YouCompleteMe'
 
-	" Vue file highlighting
-	" I guess? How many highlighting deps do I really need? Is there just one
-	" I can use?
-	Plugin 'posva/vim-vue'
-    
-	" Fuzzy finder 
-	" I use this a lot
-	Bundle 'kien/ctrlp.vim'
+" Navigate between vim or tmux panes seamlessly
+" @IDK is this what I'm using to command-l between tmux and vim?
+Plug 'christoomey/vim-tmux-navigator'	
 
-	" Support for easily toggling comments.
-	" I also use this, dunno if its best?
-	Bundle 'tpope/vim-commentary'
+" Vue file highlighting
+" I guess? How many highlighting deps do I really need? Is there just one
+" I can use?
+Plug 'posva/vim-vue'
+  
+" Fuzzy finder 
+" I use this a lot
+Plug 'kien/ctrlp.vim'
 
-	" Proper JSON filetype detection, and support.
-	" this is okay, but I don't really use it much (sometimes I get a warning
-	" on save but idk if its coming from here, and its not very useful for
-	" linting)
-	Bundle 'leshill/vim-json'
+" Support for easily toggling comments.
+" I also use this, dunno if its best?
+Plug 'tpope/vim-commentary'
 
+" Proper JSON filetype detection, and support.
+" this is okay, but I don't really use it much (sometimes I get a warning
+" on save but idk if its coming from here, and its not very useful for
+" linting)
+Plug 'leshill/vim-json'
 
-	" graphql query syntax
-	Bundle 'jparise/vim-graphql'
+" graphql query syntax
+Plug 'jparise/vim-graphql'
 
-	" vim indents HTML very poorly on it's own. This fixes a lot of that.
-	" DOES IT THOUGH? I care more about jsx, but I don't usually have great
-	" experience with indented html
-	Bundle 'indenthtml.vim'
+" JS and JSX syntax, uses pangloss/vim-javascript and mxw/vim-jsx-pretty
+Plug 'chemzqm/vim-jsx-improve'
+  
+" tsx hl
+Plug 'ianks/vim-tsx'
 
-	" Do I want to use this? What exactly does it give me?
-	" Plugin 'Syntastic' "uber awesome syntax and errors highlighter
+" tsx and jsx
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
-	" emoji-vim
-	" don't think I need this to display emoji in vim, not sure?
-	" Plugin 'junegunn/vim-emoji'
+" Markdown syntax
+Plug 'tpope/vim-markdown'
 
-	" JS and JSX syntax, uses pangloss/vim-javascript and mxw/vim-jsx-pretty
-	Plugin 'chemzqm/vim-jsx-improve'
-   
-	" tsx hl
-	Plugin 'ianks/vim-tsx'
+" Vim  theme
+" https://draculatheme.com/vim/
+Plug 'dracula/vim', {'as': 'dracula'}
 
-	" tsx and jsx
-	Plugin 'leafgarland/typescript-vim'
-	Plugin 'peitalin/vim-jsx-typescript'
+" Pairs brackets and quotes on open
+" This messes me up sometimes... consider yourself on probation
+" Plug 'Raimondi/delimitMate'
 
-	" Markdown syntax
-	Bundle 'tpope/vim-markdown'
+" use editor config
+Plug 'editorconfig/editorconfig-vim'	
 
-	" LessCSS -- I don't use this
-	" Bundle 'groenewege/vim-less'
+" ALE Linting
+" Plug 'dense-analysis/ale'
 
-	" Vim jsbeautify plugin
-	" Plugin 'maksimr/vim-jsbeautify'
-	" I haven't been using this either
-
-	" Vim  theme
-	" https://draculatheme.com/vim/
-	Plugin 'dracula/vim'
-
-	" Pairs brackets and quotes on open
-	" This messes me up sometimes... consider yourself on probation
-	Plugin 'delimitMate.vim'
-
-	" use editor config
-	Plugin 'editorconfig/editorconfig-vim'	
-
-	" ALE Linting
-	Plugin 'dense-analysis/ale'
-
-    if iCanHazVundle == 0
-        echo "Installing Vundles, please ignore key map error messages"
-        echo ""
-        :PluginInstall
-    endif
-
-    call vundle#end() 
-    "must be last
+call plug#end()
 
 " YouComplete needs utf-8 encoding
 " I'm not using YCM anymore, but I think this is still a relevant feature?
@@ -118,16 +83,8 @@ filetype plugin indent on " Filetype auto-detection
 syntax on " Syntax highlighting
 
 " Autoclose brackets and newline carriage return
-let g:delimitMate_expand_cr=1
-let g:delimitMate_matchpairs = "(:),[:],{:},<:>,>:<"
-
-" Enable spellchecking in md files
-" autocmd BufNewFile,BufRead *.md set ft=markdown spell
-" dont spellcheck urls
-" syn match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell
-
-" Highlight md code blocks
-" let g:markdown_github_languages = ['js', 'javascript']
+" let g:delimitMate_expand_cr=1
+" let g:delimitMate_matchpairs = "(:),[:],{:},<:>,>:<"
 
 " Highlight md code blocks
 let g:markdown_fenced_languages = ['html', 'javascript', 'bash=sh', 'json']
@@ -181,12 +138,6 @@ inoremap Jf <esc>
 " create new vsplit, and switch to it.
 noremap <leader>v <C-w>v
 
-" bindings for easy split nav
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-l> <C-w>l
-
 " Use sane regex's when searching
 nnoremap / /\v
 vnoremap / /\v
@@ -196,20 +147,6 @@ noremap <silent> <leader><space> :noh<cr>:call clearmatches()<cr>
 
 " Quick buffer switching - like cmd-tab'ing
 nnoremap <leader><leader> <c-^>
-
-
-" Visual line nav, not real line nav
-" If you wrap lines, vim by default won't let you move down one line to the
-" wrapped portion. This fixes that.
-"
-" Turned this off because I often have wrapped lines, and this makes relnum
-" useless
-" noremap j gj
-" noremap k gk
-
-" Plugin settings:
-" Below are some 'sane' (IMHO) defaults for a couple of the above plugins I
-" referenced.
 
 " Map the key for toggling comments with vim-commentary
 " this doesnt make sense to me, leader should be , but I do this with gc in
@@ -250,13 +187,13 @@ set completeopt-=preview
 
 " Setup File types
 " dunno if I really need these
-autocmd BufNewFile,BufRead *.pug set filetype=pug
-autocmd BufNewFile,BufRead *.js set filetype=javascript
-autocmd BufNewFile,BufRead *.vue set filetype=vue commentstring=//\ %s
+" autocmd BufNewFile,BufRead *.pug set filetype=pug
+" autocmd BufNewFile,BufRead *.js set filetype=javascript
+" autocmd BufNewFile,BufRead *.vue set filetype=vue commentstring=//\ %s
 
 " Change tabs to spaces in pug files
 " I gotta figure out my stance on tabs/spaces again. prolly go spaces?
-autocmd FileType pug setlocal shiftwidth=2 tabstop=2 expandtab 
+" autocmd FileType pug setlocal shiftwidth=2 tabstop=2 expandtab 
 
 " Set default :Dispatch command for node files
 " I actually do this from command mode by hand
@@ -307,36 +244,200 @@ if has('persistent_undo') && isdirectory(expand('~').'/.vim/backups')
   set undofile
 endif
 
+" Using the tool alt https://github.com/uptech/alt
+" Run a given vim command on the results of alt from a given path.
+function! AltCommand(path, vim_command)
+  let l:alternate = system("alt " . a:path)
+  if empty(l:alternate)
+    echo "No alternate file for " . a:path . " exists!"
+  else
+    exec a:vim_command . " " . l:alternate
+  endif
+endfunction
+
+" Find the alternate file for the current path and open it
+" Using this to switch between files and their test equivalents
+nnoremap <leader>. :w<cr>:call AltCommand(expand('%'), ':e')<cr>
+
+
 " ================ Scrolling ========================
 set scrolloff=5         "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 
-" Run prettier on save
-" autocmd BufWritePre *.js,*.md Neoformat
-let g:ale_linter_aliases = {'jsx': ['javascript']}
-let g:ale_fixers = {
-\   'javascript': ['eslint'],
-\   'javascriptreact': ['eslint'],
-\		'typescript': ['eslint'],
-\		'markdown': ['prettier']
-\}
-let g:ale_fix_on_save = 1
 
-let g:ale_sign_error = '!'
-let g:ale_sign_warning = '_'
+" ======================== CoC Autocomplete setup start ======================
+  " \ 'coc-pairs',
+let g:coc_global_extensions = [
+  \ 'coc-snippets',
+  \ 'coc-tsserver',
+  \ 'coc-eslint', 
+  \ 'coc-prettier', 
+  \ 'coc-json', 
+  \ ]
 
-" Navigate to ALE errors
-nnoremap <silent> <leader>j :ALENext<cr>
-nnoremap <silent> <leader>k :ALEPrevious<cr>
+" try to fix color of errors from tsserver 
+hi! CocErrorSign guifg=#d1666a
 
-" Syntastic eslint setup
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_javascript_eslint_exe = 'npm run lint --'
+" Sample CoC config pasted from their readme
+set hidden
+
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
+
+" Give more space for displaying messages.
+set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+" autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+" Remap <C-f> and <C-b> for scroll float windows/popups.
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
+
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of language server.
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add (Neo)Vim's native statusline support.
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline.
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Mappings for CoCList
+" Show all diagnostics.
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+" ======================== CoC Autocomplete setup end ======================
