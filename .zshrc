@@ -20,7 +20,9 @@ export EDITOR=vim
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z shrink-path nvm)
+plugins=(git zsh-z shrink-path nvm)
+
+# zsh-z native zsh port of z # git clone https://github.com/agkozak/zsh-z $ZSH_CUSTOM/plugins/zsh-z
 
 source $ZSH/oh-my-zsh.sh
 
@@ -68,6 +70,9 @@ alias cat="bat"
 # Start tmux session
 alias start="sh ~/dev-tmux"
 
+# cd to git root
+alias cdr='cd $(git root)'
+
 ## Hooks
 autoload -U add-zsh-hook
 
@@ -79,7 +84,8 @@ prompt_dir() {
 
 # WSL settings
 # set default browser for opening pages from wsl to wslview
-# export BROWSER=wslview
+export BROWSER=wslview
 
 # zprof
+
 
