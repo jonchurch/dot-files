@@ -159,6 +159,9 @@ let g:ctrlp_map = '<c-t>'
 " Let ctrlp have up to 20 results.
 let g:ctrlp_max_height = 20
 
+" set working dir to only vim dir
+let g:ctrlp_working_path_mode=''
+
 " custom ctrlp ignore
 " having this ignore is sadly v vimportant
 " set wildignore+=*/tmp/*,*.zip,*/node_modules/*,*/.git/*,DS_Store
