@@ -125,11 +125,11 @@ nnoremap ; :
 vnoremap ; :
 
 " Get ; back with ;;
-" noremap ;; ;
+noremap ;; ;
 
 " Get ; back with :
-nnoremap : ;
-vnoremap : ;
+" nnoremap : ;
+" vnoremap : ;
 
 " So we don't have to reach for escape to leave insert mode.
 inoremap jf <esc>
