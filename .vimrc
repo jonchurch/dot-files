@@ -14,10 +14,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " also don't use this much? Except I guess to run node %
 Plug 'tpope/vim-dispatch'
 
-" Vim fuzzy autocomplete with tab
-" this is a very heavy dep for something I don't use much
-" Plugin 'Valloric/YouCompleteMe'
-
 " Navigate between vim or tmux panes seamlessly
 " @IDK is this what I'm using to command-l between tmux and vim?
 Plug 'christoomey/vim-tmux-navigator'	
@@ -120,16 +116,20 @@ set virtualedit+=block
 
 let mapleader = ","
 
+" go forward through buffers
+nnoremap <leader>h :bprev<CR>
+nnoremap <C-h> :bprev<CR>
+" go backward through buffers
+nnoremap <leader>l :bnext<CR>
+nnoremap <C-l> :bnext<CR>
+
 " So we don't have to press shift when we want to get into command mode.
 nnoremap ; :
 vnoremap ; :
 
-" Get ; back with ;;
-" noremap ;; ;
-
 " Get ; back with :
 nnoremap : ;
-" vnoremap : ;
+vnoremap : ;
 
 " So we don't have to reach for escape to leave insert mode.
 inoremap jf <esc>
@@ -165,7 +165,7 @@ let g:ctrlp_working_path_mode=''
 " custom ctrlp ignore
 " having this ignore is sadly v vimportant
 " set wildignore+=*/tmp/*,*.zip,*/node_modules/*,*/.git/*,DS_Store
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|power-platform-ux\/apps\/powerva-microsoft-com\/lib'
 
 " Finally the color scheme. Choose whichever you want from the list in the
 " link above (back up where we included the bundle of a ton of themes.)
@@ -206,6 +206,13 @@ autocmd FileType js let b:dispatch = 'node %'
 " don't need this anymore if I'm sticking to Mac
 "nnoremap "*p :r !cat ~/.crouton-clipboard/data.txt<CR>
 "vnoremap "*y :'<,'>w! ~/.crouton-clipboard/data.txt<CR>
+
+if system('uname -r') =~ "Microsoft"
+    augroup Yank
+        autocmd!
+        autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
+        augroup END
+endif
 
 " yml format mode
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
@@ -261,7 +268,6 @@ endfunction
 " Find the alternate file for the current path and open it
 " Using this to switch between files and their test equivalents
 nnoremap <leader>. :w<cr>:call AltCommand(expand('%'), ':e')<cr>
-
 
 " ================ Scrolling ========================
 set scrolloff=5         "Start scrolling when we're 8 lines away from margins
