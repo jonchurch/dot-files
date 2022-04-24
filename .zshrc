@@ -73,6 +73,9 @@ alias start="sh ~/dev-tmux"
 # cd to git root
 alias cdr='cd $(git root)'
 
+# cd to powerva-microsoft dir
+alias cdp='~/Work/power-platform-ux/apps/powerva-microsoft-com'
+
 ## Hooks
 autoload -U add-zsh-hook
 
@@ -83,8 +86,13 @@ prompt_dir() {
 }
 
 # WSL settings
-# set default browser for opening pages from wsl to wslview
-export BROWSER=wslview
+if [[ $(grep -i Microsoft /proc/version) ]]; then
+  # set default browser for opening pages from wsl to wslview
+  export BROWSER=wslview
+  # hacky solution to release memory from the vmmem windows process
+  # actually, no clue if this even really works 
+  alias drop_cache="sudo sh -c \"echo 3 >'/proc/sys/vm/drop_caches' && swapoff -a && swapon -a && printf '\n%s\n' 'Ram-cache and Swap Cleared'\""
+fi
 
 # zprof
 
