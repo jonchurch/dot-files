@@ -18,4 +18,6 @@
   conflicts = diff --name-only --diff-filter=U
   fix = "!f() { ${EDITOR} `git conflicts`; }; f"
 [init]
-	defaultBranch = main
+  defaultBranch = main
+[commit]
+  verbose = true
