@@ -1,4 +1,14 @@
 {
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript", 
+    "typescriptreact", 
+    "css",
+    "scss"
+  ],
   "tsserver.npm": "~/.nvm",
-  "coc.preferences.formatOnSaveFiletypes": ["javascript", "javascriptreact", "typescript", "typescriptreact", "css", "scss"]
+  "tsserver.log": "verbose",
+  "tsserver.trace.server": "verbose",
+  "tsserver.ignoreLocalTsserver": true
 }
