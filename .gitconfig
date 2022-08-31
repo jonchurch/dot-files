@@ -21,3 +21,5 @@
   defaultBranch = main
 [commit]
   verbose = true
+[feature]
+	manyFiles = 1
