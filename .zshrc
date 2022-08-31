@@ -3,12 +3,19 @@
 
 export EDITOR=vim
 
+# Disable beep?
+unsetopt BEEP
+
 # Add awsebcli to path
  export PATH=~/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
  export ZSH=${HOME}/.oh-my-zsh
 
+# Disable only the untracked file status check for prompt
+# Alternative to totally turning off the status indicator,
+# or setting a 
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -35,6 +42,9 @@ source $ZSH/oh-my-zsh.sh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 alias yeet="rm -rf"
+
+# change the dir new tmux sessions start in to current
+alias rehome='tmux command-prompt "attach -c %1 $PWD"'
 
 function search_man { 
   LESS=+/^[[:blank:]]+"$2" man "$1" ;
