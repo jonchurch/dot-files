@@ -5,10 +5,11 @@
 	helper = !/usr/bin/gh auth git-credential
 [pager]
   core = less -F
-  ; branch = false  # no paging for git branch commands like gb -v, prints to stdout
-[merge "npm-merge-driver"]
-	name = automatically merge npm lockfiles
-	driver = npx npm-merge-driver merge %A %O %B %P
+[user]
+	email = me@jonchurch.com
+  name = Jon Church
+[includeIf "gitdir:~/Work/"]
+  path = .gitconfig-work
 [alias]
   root = rev-parse --show-toplevel
 	pr = "!f() { git fetch -fu ${2:-upstream} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
