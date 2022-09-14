@@ -1,9 +1,6 @@
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global
-[credential]
-	; helper = cache --timeout=10800
-	; helper = osxkeychain
 [credential "https://github.com"]
 	helper = !/usr/bin/gh auth git-credential
 [pager]
