@@ -43,6 +43,8 @@ source $ZSH/oh-my-zsh.sh
 
 alias yeet="rm -rf"
 
+alias vimmod='vim $(git ls-files -m)'
+
 # change the dir new tmux sessions start in to current
 alias rehome='tmux command-prompt "attach -c %1 $PWD"'
 
