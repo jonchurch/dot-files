@@ -1,41 +1,3 @@
---[[
-
-=====================================================================
-==================== READ THIS BEFORE CONTINUING ====================
-=====================================================================
-
-Kickstart.nvim is *not* a distribution.
-
-Kickstart.nvim is a template for your own configuration.
-  The goal is that you can read every line of code, top-to-bottom, and understand
-  what your configuration is doing.
-
-  Once you've done that, you should start exploring, configuring and tinkering to
-  explore Neovim!
-
-  If you don't know anything about Lua, I recommend taking some time to read through
-  a guide. One possible example:
-  - https://learnxinyminutes.com/docs/lua/
-
-  And then you can explore or search through `:help lua-guide`
-
-
-Kickstart Guide:
-
-I have left several `:help X` comments throughout the init.lua
-You should run that command and read that help section for more information.
-
-In addition, I have some `NOTE:` items throughout the file.
-These are for you, the reader to help understand what is happening. Feel free to delete
-them once you know what you're doing, but they should serve as a guide for when you
-are first encountering a few different constructs in your nvim config.
-
-I hope you enjoy your Neovim journey,
-- TJ
-
-P.S. You can delete this when you're done too. It's your config now :)
---]]
-
 -- Set , as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
@@ -83,7 +45,15 @@ require('lazy').setup({
   'alexghergh/nvim-tmux-navigation',
 
   -- Copilot
-  -- 'github/copilot.vim',
+  {
+    'github/copilot.vim', 
+    config = function() 
+      require('copilot').setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+    end
+  },
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -106,6 +76,16 @@ require('lazy').setup({
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+  },
+
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    build = ":Copilot auth",
+    opts = {
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+    },
   },
 
   -- Useful plugin to show you pending keybinds.
@@ -247,6 +227,13 @@ vim.o.timeoutlen = 300
 vim.o.number = true
 vim.o.relativenumber = true
 
+-- Indenting
+vim.o.expandtab = true -- Use spaces instead of tabs
+vim.o.tabstop=2     -- Number of spaces a tab in the file counts for
+vim.o.shiftwidth=2  -- Number of spaces to use for autoindent
+vim.o.softtabstop=2 -- Number of spaces that a <Tab> counts for
+
+
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
@@ -268,6 +255,10 @@ vim.keymap.set("n", "<leader>h", ":bprev<CR>")
 vim.keymap.set("n", "<leader>l", ":bnext<CR>")
 -- nnoremap <C-l> :bnext<CR>
 
+-- git add current file
+vim.keymap.set({'n'}, '<leader>ga', ':Git add %<CR>')
+-- commit
+vim.keymap.set({'n'}, '<leader>gc', ':Git commit <CR>')
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -298,6 +289,11 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 -- [[ Configure Autopairs ]]
 require('nvim-autopairs').setup {}
 
+-- [[Configure Comment, setup ts content commentstring]]
+require('Comment').setup {
+  pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+}
+
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
@@ -309,7 +305,7 @@ require('telescope').setup {
       },
     },
     path_display = {
-      shorten = { len = 2, exclude = {2, -2} }
+      shorten = { len = 2, exclude = {2, -1} }
     }
   },
 }
@@ -319,8 +315,8 @@ require('nvim-tmux-navigation').setup {
   disable_when_zoomed = true, -- defaults to false
   keybindings = {
       left = "<C-h>",
-      down = "<C-j>",
-      up = "<C-k>",
+      down = "<C-k>",
+      up = "<C-j>",
       right = "<C-l>",
       last_active = "<C-\\>",
       next = "<C-Space>",
@@ -411,7 +407,8 @@ require('nvim-treesitter.configs').setup {
       },
     },
     context_commentstring = {
-      enable = true
+      enable = true,
+      autocommand = false
     }
   },
 }
@@ -451,7 +448,7 @@ local on_attach = function(_, bufnr)
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  nmap('<leader>k', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -532,7 +529,7 @@ cmp.setup {
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete {},
     ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
+      behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     },
     ['<Tab>'] = cmp.mapping(function(fallback)
@@ -557,6 +554,7 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'copilot' }
   },
 }
 
