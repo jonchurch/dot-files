@@ -5,6 +5,7 @@
 	helper = !/usr/bin/gh auth git-credential
 [pager]
   core = less -F
+  grep = less -F -X
 [user]
 	email = me@jonchurch.com
   name = Jon Church
