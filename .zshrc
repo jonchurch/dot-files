@@ -45,8 +45,10 @@ alias yeet="rm -rf"
 
 alias vimmod='vim $(git ls-files -m)'
 
-# change the dir new tmux sessions start in to current
-alias rehome='tmux command-prompt "attach -c %1 $PWD"'
+# it is time, switch to nvim fulltime
+alias vim="nvim"
+alias vi="nvim"
+
 
 function search_man { 
   LESS=+/^[[:blank:]]+"$2" man "$1" ;
