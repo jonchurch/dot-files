@@ -1,10 +1,10 @@
 # enable this and zprof on last line for profiling zshrc load time
 #zmodload zsh/zprof
 
-export EDITOR=vim
 
 # Disable beep?
 unsetopt BEEP
+export EDITOR=nvim
 
 # Add awsebcli to path
  export PATH=~/.local/bin:$PATH
