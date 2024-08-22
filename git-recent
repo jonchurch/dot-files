@@ -1,0 +1,18 @@
+#!/bin/bash
+set -eo pipefail
+
+# Get the list of recent branches
+branches=$(git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short)' | head -20)
+if [[ -z $branches ]]; then
+  echo "No branches found"
+  exit 1
+fi
+
+# Use fzf to select a branch and check it out
+selected_branch=$(echo "$branches" | fzf --height 20% --reverse)
+if [[ -n $selected_branch ]]; then
+  git checkout "$selected_branch"
+else
+  echo "No branch selected"
+fi
+
