@@ -49,6 +49,8 @@ alias vimmod='vim $(git ls-files -m)'
 alias vim="nvim"
 alias vi="nvim"
 
+alias jqs='jq .scripts package.json'
+alias jsq='jqs'
 
 function search_man { 
   LESS=+/^[[:blank:]]+"$2" man "$1" ;
