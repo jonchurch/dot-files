@@ -23,3 +23,5 @@
   verbose = true
 ; [feature]
 ; 	manyFiles = 1
+[push]
+  autoSetupRemote = true
