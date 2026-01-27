@@ -132,13 +132,14 @@ require('lazy').setup({
     },
   },
 
-  { -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
+  { -- indent-blankline v3 (ibl)
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
     opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
+      indent = { char = "┊" },
+      whitespace = { remove_blankline_trail = true },
+      -- If you want the old behavior “don’t show trailing indent on blank lines”,
+      -- this is the closest equivalent in v3.
     },
   },
 
@@ -185,7 +186,7 @@ require('lazy').setup({
   --
   --    An additional note is that if you only copied in the `init.lua`, you can just comment this line
   --    to get rid of the warning telling you that there are not plugins in `lua/custom/plugins/`.
-  { import = 'custom.plugins' },
+  -- { import = 'custom.plugins' },
 }, {})
 
 -- [[ Setting options ]]
