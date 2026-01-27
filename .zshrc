@@ -52,6 +52,9 @@ alias vi="nvim"
 alias jqs='jq .scripts package.json'
 alias jsq='jqs'
 
+alias jqd='jq .dependencies package.json'
+alias jds=jqd
+
 function search_man { 
   LESS=+/^[[:blank:]]+"$2" man "$1" ;
 }
