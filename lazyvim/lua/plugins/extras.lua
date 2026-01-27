@@ -41,7 +41,7 @@ return {
     },
   },
 
-  -- Disable plugins you don't want/need
-  { "folke/flash.nvim", enabled = false },           -- Fancy motion (you have your own workflow)
-  { "echasnovski/mini.surround", enabled = false },  -- LazyVim default, you might not use it
+  -- Uncomment to disable plugins you don't want:
+  -- { "folke/flash.nvim", enabled = false },      -- s/S for jump (try it first)
+  -- { "echasnovski/mini.surround", enabled = false },  -- surround motions
 }
