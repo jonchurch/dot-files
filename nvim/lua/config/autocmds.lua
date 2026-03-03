@@ -38,3 +38,4 @@ local function toggle_eslint_autofix()
 end
 
 vim.api.nvim_create_user_command('ToggleEslintFix', toggle_eslint_autofix, {})
+
