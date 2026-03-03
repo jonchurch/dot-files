@@ -2,20 +2,24 @@
 return {
   -- Mason for installing LSP servers
   {
-    'williamboman/mason.nvim',
+    'mason-org/mason.nvim',
     opts = {},
   },
 
-  -- Mason-lspconfig for auto-installing servers
+  -- Mason-lspconfig for auto-installing and auto-enabling servers
   {
-    'williamboman/mason-lspconfig.nvim',
-    dependencies = { 'williamboman/mason.nvim' },
+    'mason-org/mason-lspconfig.nvim',
+    dependencies = {
+      'mason-org/mason.nvim',
+      'neovim/nvim-lspconfig',
+    },
     opts = {
       ensure_installed = {
-        'ts_ls',  -- TypeScript (renamed from tsserver)
+        'ts_ls',
         'eslint',
         'lua_ls',
       },
+      automatic_enable = true,
     },
   },
 
@@ -92,19 +96,13 @@ return {
     end,
   },
 
-  -- LSP configuration using Neovim 0.11+ native APIs
+  -- LSP keymaps and formatting on attach
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
       'hrsh7th/cmp-nvim-lsp',
     },
     config = function()
-      -- Get capabilities from cmp-nvim-lsp
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
       -- LSP attach callback for keymaps
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
@@ -163,33 +161,6 @@ return {
           end, { desc = 'Format current buffer with LSP' })
         end,
       })
-
-      -- Server configurations using Neovim 0.11+ native API
-      -- TypeScript/JavaScript
-      vim.lsp.config('ts_ls', {
-        capabilities = capabilities,
-      })
-
-      -- ESLint
-      vim.lsp.config('eslint', {
-        capabilities = capabilities,
-      })
-
-      -- Lua
-      vim.lsp.config('lua_ls', {
-        capabilities = capabilities,
-        settings = {
-          Lua = {
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
-          },
-        },
-      })
-
-      -- Enable configured servers
-      vim.lsp.enable('ts_ls')
-      vim.lsp.enable('eslint')
-      vim.lsp.enable('lua_ls')
     end,
   },
 }
