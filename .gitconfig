@@ -9,8 +9,6 @@
 [user]
   email = me@jonchurch.com
   name = Jon Church
-[includeIf "gitdir:~/Work/"]
-  path = .gitconfig-work
 [alias]
   root = rev-parse --show-toplevel
   pr = "!f() { git fetch -fu ${2:-upstream} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
