@@ -27,7 +27,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-z shrink-path nvm)
+plugins=(git z shrink-path nvm)
 
 # zsh-z native zsh port of z # git clone https://github.com/agkozak/zsh-z $ZSH_CUSTOM/plugins/zsh-z
 
@@ -105,7 +105,7 @@ prompt_dir() {
 }
 
 # WSL settings
-if [[ $(grep -i Microsoft /proc/version) ]]; then
+if uname -r | grep -qi microsoft; then
   # set default browser for opening pages from wsl to wslview
   export BROWSER=wslview
   # hacky solution to release memory from the vmmem windows process
