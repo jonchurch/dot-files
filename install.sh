@@ -20,10 +20,13 @@ link() {
 if command -v brew >/dev/null; then
   echo "Installing dependencies via brew..."
   brew install neovim tree-sitter-cli
-elif command -v npm >/dev/null; then
-  echo "Installing tree-sitter-cli via npm..."
-  npm install -g tree-sitter-cli
+elif command -v cargo >/dev/null; then
+  echo "Installing tree-sitter-cli via cargo..."
+  cargo install tree-sitter-cli
   echo "Note: install neovim (0.11+) manually"
+else
+  echo "Note: install neovim (0.11+) and tree-sitter-cli manually"
+  echo "  tree-sitter-cli: cargo install tree-sitter-cli"
 fi
 
 link "$DOTFILES/nvim"          "$HOME/.config/nvim"
