@@ -9,7 +9,6 @@
   name = Jon Church
 [alias]
   root = rev-parse --show-toplevel
-  pr = "!f() { git fetch -fu ${2:-upstream} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
   conflicts = diff --name-only --diff-filter=U
   fix = "!f() { ${EDITOR} `git conflicts`; }; f"
   recent = "!git-recent"
