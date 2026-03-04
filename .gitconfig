@@ -1,11 +1,9 @@
 [core]
   editor = nvim
   excludesfile = ~/.gitignore_global
+  pager = less -FX
 [credential "https://github.com"]
   helper = !/usr/bin/gh auth git-credential
-[pager]
-  core = less -F
-  grep = less -F -X
 [user]
   email = me@jonchurch.com
   name = Jon Church

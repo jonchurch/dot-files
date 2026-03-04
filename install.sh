@@ -29,7 +29,8 @@ else
   echo "Note: install these manually: neovim (0.11+), tree-sitter-cli, eza, zoxide, fzf, bat"
 fi
 
-link "$DOTFILES/nvim"          "$HOME/.config/nvim"
-link "$DOTFILES/.zshrc" "$HOME/.zshrc"
+link "$DOTFILES/nvim"               "$HOME/.config/nvim"
+link "$DOTFILES/.zshrc"              "$HOME/.zshrc"
+link "$DOTFILES/.gitignore_global"   "$HOME/.gitignore_global"
 
 echo "Done!"
