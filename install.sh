@@ -27,6 +27,6 @@ elif command -v npm >/dev/null; then
 fi
 
 link "$DOTFILES/nvim"          "$HOME/.config/nvim"
-link "$DOTFILES/minimal.zshrc" "$HOME/.zshrc"
+link "$DOTFILES/.zshrc" "$HOME/.zshrc"
 
 echo "Done!"
