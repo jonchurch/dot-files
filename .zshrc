@@ -13,7 +13,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 ZSH_THEME="agnoster"
 
-plugins=(git z shrink-path nvm)
+plugins=(git shrink-path nvm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -35,6 +35,9 @@ alias cler="clear"
 alias clera="clear"
 
 alias cat="bat"
+alias ls="eza"
+alias ll="eza -la"
+alias tree="eza --tree"
 
 alias cdr='cd $(git root)'
 
@@ -49,6 +52,10 @@ prompt_dir() {
 }
 
 autoload -U add-zsh-hook
+
+# Modern tool inits
+eval "$(zoxide init zsh)"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # WSL settings (uncomment if needed)
 # if uname -r | grep -qi microsoft; then

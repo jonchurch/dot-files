@@ -19,14 +19,14 @@ link() {
 # Dependencies
 if command -v brew >/dev/null; then
   echo "Installing dependencies via brew..."
-  brew install neovim tree-sitter-cli
+  brew install neovim tree-sitter-cli eza zoxide fzf bat
 elif command -v cargo >/dev/null; then
-  echo "Installing tree-sitter-cli via cargo..."
-  cargo install tree-sitter-cli
-  echo "Note: install neovim (0.11+) manually"
+  echo "Installing dependencies via cargo..."
+  cargo install tree-sitter-cli eza zoxide bat
+  echo "Note: install neovim (0.11+) and fzf manually"
+  echo "  fzf: git clone https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install"
 else
-  echo "Note: install neovim (0.11+) and tree-sitter-cli manually"
-  echo "  tree-sitter-cli: cargo install tree-sitter-cli"
+  echo "Note: install these manually: neovim (0.11+), tree-sitter-cli, eza, zoxide, fzf, bat"
 fi
 
 link "$DOTFILES/nvim"          "$HOME/.config/nvim"
