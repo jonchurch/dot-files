@@ -35,7 +35,6 @@ alias cler="clear"
 alias clera="clear"
 
 alias cat="bat"
-alias grep="rg"
 alias ls="eza"
 alias ll="eza -la"
 alias tree="eza --tree"
