@@ -8,6 +8,7 @@ return {
       { '<leader>cf', function() require('conform').format({ async = true }) end, desc = 'Format buffer' },
     },
     opts = {
+      notify_no_formatters = false,
       formatters_by_ft = {
         javascript = { 'prettier' },
         javascriptreact = { 'prettier' },
@@ -26,7 +27,7 @@ return {
         if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
           return
         end
-        return { timeout_ms = 2000, lsp_format = 'fallback' }
+        return { timeout_ms = 2000, lsp_format = 'never' }
       end,
       formatters = {
         prettier = {
