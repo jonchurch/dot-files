@@ -70,3 +70,16 @@ eval "$(zoxide init zsh)"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# pnpm
+# Platform-aware PNPM_HOME (pnpm's install dir differs per OS).
+# NOTE: don't re-run `pnpm setup` — it would overwrite this block with a flat default.
+case "$(uname -s)" in
+  Darwin) export PNPM_HOME="$HOME/Library/pnpm" ;;
+  *)      export PNPM_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/pnpm" ;;
+esac
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
