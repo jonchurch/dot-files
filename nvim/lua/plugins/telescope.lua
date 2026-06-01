@@ -33,6 +33,7 @@ return {
       -- Load fzf extension if available
       pcall(telescope.load_extension, 'fzf')
     end,
+    cmd = 'Telescope',
     keys = {
       { '<leader>?', function() require('telescope.builtin').oldfiles() end, desc = '[?] Find recently opened files' },
       { '<leader><space>', function() require('telescope.builtin').buffers() end, desc = '[ ] Find existing buffers' },
