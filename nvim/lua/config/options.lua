@@ -13,6 +13,16 @@ vim.o.mouse = ''
 -- Sync clipboard between OS and Neovim
 vim.o.clipboard = 'unnamedplus'
 
+-- Over SSH, use OSC 52 so yanks reach the local machine's clipboard
+if os.getenv('SSH_TTY') then
+  local osc52 = require('vim.ui.clipboard.osc52')
+  vim.g.clipboard = {
+    name = 'OSC 52',
+    copy = { ['+'] = osc52.copy('+'), ['*'] = osc52.copy('*') },
+    paste = { ['+'] = osc52.paste('+'), ['*'] = osc52.paste('*') },
+  }
+end
+
 -- Enable break indent
 vim.o.breakindent = true
 
